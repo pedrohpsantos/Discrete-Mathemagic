@@ -1,4 +1,4 @@
-# Discrete-Mathemagic
+# 🪄 Discrete-Mathemagic
 
 **Discrete-Mathemagic** é um site de estudo voltado para a disciplina de Matemática Discreta, utilizando provas de referência da UnB (Engenharia de Software) como base para organização de conceitos, exemplos e exercícios.
 
