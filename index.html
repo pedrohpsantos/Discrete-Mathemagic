@@ -1,0 +1,3370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discrete Mathemagic</title>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script>
+      // Configuração Global do MathJax (para renderizar LaTeX)
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <header
+      class="bg-[#455a64] text-white p-4 shadow-md fixed w-full z-20 top-0"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl md:text-2xl font-semibold">
+          Discrete Mathemagic
+        </h1>
+        <button
+          id="mobileMenuButton"
+          class="md:hidden text-2xl focus:outline-none"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <div class="flex flex-1 pt-16">
+      <aside
+        id="sidebar"
+        class="bg-[#546e7a] text-gray-200 w-64 p-4 space-y-1 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-10 overflow-y-auto pt-16"
+      >
+        <nav class="space-y-2">
+          <div>
+            <p
+              class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-2 pb-1"
+            >
+              Geral
+            </p>
+            <a
+              href="#intro"
+              data-target="intro"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Introdução</a
+            >
+            <a
+              href="#exam_analysis"
+              data-target="exam_analysis"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Análise das Provas</a
+            >
+          </div>
+
+          <div>
+            <p
+              class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-3 pb-1"
+            >
+              Lógica Matemática (P1)
+            </p>
+            <a
+              href="#logic_propositions"
+              data-target="logic_propositions"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Proposições e Conectivos</a
+            >
+            <a
+              href="#logic_truth_tables_negations"
+              data-target="logic_truth_tables_negations"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Tabelas Verdade e Negações</a
+            >
+            <a
+              href="#logic_tautologies"
+              data-target="logic_tautologies"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Tautologias e Contradições</a
+            >
+            <a
+              href="#logic_equivalences"
+              data-target="logic_equivalences"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Equivalências Lógicas</a
+            >
+            <a
+              href="#logic_implication"
+              data-target="logic_implication"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Implicação Lógica</a
+            >
+            <a
+              href="#logic_inference"
+              data-target="logic_inference"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Inferência Lógica</a
+            >
+            <a
+              href="#logic_open_sentences"
+              data-target="logic_open_sentences"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Sentenças Abertas</a
+            >
+            <a
+              href="#logic_quantifiers_predicates"
+              data-target="logic_quantifiers_predicates"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Quantificadores e Predicados</a
+            >
+          </div>
+
+          <div>
+            <p
+              class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-3 pb-1"
+            >
+              Demonstração Matemática (P2)
+            </p>
+            <a
+              href="#sets"
+              data-target="sets"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Teoria dos Conjuntos</a
+            >
+            <a
+              href="#sequences"
+              data-target="sequences"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Sequências</a
+            >
+            <a
+              href="#summations_products"
+              data-target="summations_products"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Somatórios e Produtórios</a
+            >
+            <a
+              href="#proofs"
+              data-target="proofs"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Demonstração Matemática</a
+            >
+            <a
+              href="#induction"
+              data-target="induction"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Indução Matemática</a
+            >
+            <a
+              href="#relations"
+              data-target="relations"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Relações</a
+            >
+            <a
+              href="#functions"
+              data-target="functions"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Funções</a
+            >
+            <a
+              href="#counting_principles"
+              data-target="counting_principles"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Contagem: Princípios</a
+            >
+            <a
+              href="#counting_pac"
+              data-target="counting_pac"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Contagem: P/A/C</a
+            >
+          </div>
+
+          <div>
+            <p
+              class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-3 pb-1"
+            >
+              Finalização
+            </p>
+            <a
+              href="#exam_strategies"
+              data-target="exam_strategies"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Estratégias para Prova</a
+            >
+            <a
+              href="#final_remarks"
+              data-target="final_remarks"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
+              >Considerações Finais</a
+            >
+          </div>
+        </nav>
+      </aside>
+
+      <main
+        id="mainContent"
+        class="flex-1 ml-0 md:ml-64 p-6 transition-all duration-300 ease-in-out"
+      >
+        <section
+          id="intro"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            1. Introdução ao Guia de Estudo
+          </h2>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Sobre Matemática Discreta e Lógica"
+          >
+            Mostrar Sobre Matemática Discreta e Lógica
+          </button>
+          <div class="collapsible-content space-y-3">
+            <p class="font-semibold text-lg">O que é Matemática Discreta?</p>
+            <p>
+              A Matemática Discreta é o ramo da matemática que lida com objetos
+              que podem assumir apenas valores distintos, separados ou
+              descontínuos. Em contraste com a matemática contínua,
+              que estuda grandezas que variam suavemente (como no cálculo
+              diferencial e integral), a matemática discreta foca em
+              estruturas como conjuntos finitos ou infinitos contáveis
+              (enumeráveis ou sequenciáveis segundo algum critério), grafos e
+              sequências de elementos. Exemplos de estruturas
+              discretas incluem o conjunto dos números inteiros e o conjunto das
+              letras do alfabeto. Ela serve como uma ferramenta
+              fundamental para definir formalmente conceitos computacionais,
+              analisar suas propriedades e dimensionar suas instâncias.
+            </p>
+
+            <p class="font-semibold text-lg">
+              Estruturas Discretas vs. Contínuas
+            </p>
+            <p>
+              Estruturas discretas são feitas de partes distintas, tratando
+              objetos separados e desconectados geometricamente.
+              Exemplos incluem conjuntos como os números naturais.
+              Já estruturas contínuas não têm interrupção ou mudança brusca,
+              lidando com conjuntos não enumeráveis e com representações
+              contínuas do ponto de vista geométrico, como os números reais e o
+              cálculo diferencial.
+            </p>
+
+            <p class="font-semibold text-lg">
+              Por que Estudar Matemática Discreta?
+            </p>
+            <p>
+              Para a ciência da computação, a Matemática Discreta é crucial,
+              pois a maioria dos conceitos computacionais pertence ao domínio do
+              discreto[cite: 16]. Ela é aplicada no estudo e desenvolvimento de
+              algoritmos, linguagens de programação, criptografia,
+              desenvolvimento de software, entre outros[cite: 24, 25].
+            </p>
+
+            <p class="font-semibold text-lg">Lógica: A Ciência do Raciocínio</p>
+            <p>
+              A lógica é a ciência do raciocínio [cite: 28] e desempenha um
+              papel vital na filosofia (cuida das regras do raciocínio e busca
+              meios para inferir uma ideia a partir de outra)[cite: 30], na
+              matemática (ferramenta fundamental na definição de conceitos
+              computacionais)[cite: 31], e na programação (trata de uma
+              sequência coerente de ideias para conquistar um objetivo)[cite:
+              32]. Em programação, a lógica permite a criação de algoritmos e a
+              lógica de programação, que são essenciais para o desenvolvimento
+              de habilidades e raciocínio lógico[cite: 34].
+            </p>
+          </div>
+          <div class="space-y-3">
+            <p class="font-semibold text-lg">Objetivo do Guia:</p>
+            <p>
+              Este guia tem como finalidade principal fornecer um roteiro de
+              estudos abrangente e direcionado para a sua prova de Matemática
+              Discreta. O material foi elaborado com o intuito de cobrir todos
+              os tópicos listados como parte do conteúdo programático da
+              disciplina, utilizando as provas dos semestres anteriores (P1 e P2
+              G2 - Engenharia de Software, UnB, Profª Cristiane Loesch de Souza
+              Costa) como balizadores para o nível de dificuldade e o estilo de
+              questões que podem ser esperadas.
+            </p>
+            <p class="font-semibold text-lg">Metodologia:</p>
+            <p>
+              A abordagem adotada neste guia é modular, com cada seção dedicada
+              a um tópico específico do conteúdo. Dentro de cada módulo, será
+              apresentada uma revisão dos conceitos essenciais, seguida por
+              sugestões de videoaulas que podem auxiliar no aprofundamento
+              visual e auditivo da matéria. Adicionalmente, serão fornecidos
+              exemplos de questões resolvidas, passo a passo, e questões
+              propostas para prática individual. Estas questões foram
+              cuidadosamente calibradas com base na análise das provas de
+              referência para refletir o grau de complexidade esperado.
+            </p>
+            <p class="font-semibold text-lg">Como Utilizar este Guia:</p>
+            <p>
+              Para um aproveitamento ótimo deste material, sugere-se que cada
+              seção seja estudada de forma sequencial, respeitando a ordem dos
+              tópicos, pois muitos conceitos são cumulativos. Ao se deparar com
+              as questões propostas, é fundamental que se tente resolvê-las
+              autonomamente antes de consultar eventuais soluções ou materiais
+              de apoio. As videoaulas indicadas devem ser vistas como um
+              complemento ao estudo teórico, reforçando a compreensão dos temas
+              mais desafiadores. Recomenda-se também a revisão constante das
+              definições e propriedades, pois a Matemática Discreta exige
+              precisão conceitual.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="exam_analysis"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            2. Análise das Provas de Referência
+          </h2>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Análise da Prova de Referência (P1 - Lógica Matemática)
+          </h3>
+          <p class="mb-3">
+            A prova P1 geralmente foca nos fundamentos da lógica proposicional e
+            de predicados. A distribuição de pontos e o tipo de questão podem
+            variar, mas alguns tópicos são recorrentes. Veja abaixo um exemplo
+            de distribuição de pontos:
+          </p>
+          <div
+            class="chart-container w-full max-w-2xl mx-auto mb-6 h-72 md:h-96"
+          >
+            <canvas id="examTopicsChartP1"></canvas>
+          </div>
+          <p class="mb-3">Espere questões que envolvam:</p>
+          <ul class="list-disc list-inside space-y-1 mb-3">
+            <li>Tradução entre linguagem natural e simbologia lógica.</li>
+            <li>Construção e interpretação de tabelas verdade.</li>
+            <li>
+              Aplicação de equivalências lógicas para simplificar proposições.
+            </li>
+            <li>
+              Verificação da validade de argumentos usando regras de inferência
+              ou tabelas verdade.
+            </li>
+            <li>
+              Trabalho com sentenças abertas, quantificadores e negação de
+              proposições quantificadas.
+            </li>
+          </ul>
+          <hr class="my-8 border-gray-300" />
+          <h3 class="text-xl font-semibold mb-2">
+            Análise da Prova de Referência (P2 - Demonstração Matemática)
+          </h3>
+          <p class="mb-3">
+            Uma análise criteriosa da Avaliação P2 (Eng. Software UnB - Profª
+            Cristiane Loesch de Souza Costa) permite extrair informações
+            valiosas sobre o nível de exigência e o formato das questões.
+          </p>
+          <div
+            class="chart-container w-full max-w-2xl mx-auto mb-6 h-72 md:h-96"
+          >
+            <canvas id="examTopicsChartP2"></canvas>
+          </div>
+          <p class="text-sm text-center text-gray-600 mb-6">
+            Gráfico: Exemplo de Distribuição de Pontos por Tópico na Prova P2.
+          </p>
+          <h4 class="text-lg font-semibold mb-2">
+            Visão Geral do Nível de Dificuldade e Tipos de Questão (P2 G2 -
+            Exemplo Histórico):
+          </h4>
+          <p class="mb-3">
+            A prova P2 (exemplo histórico) demonstrou um equilíbrio entre
+            questões de múltipla escolha e discursivas. O nível de dificuldade é
+            consistente com o esperado para a disciplina, requerendo aplicação
+            de fórmulas, compreensão profunda dos conceitos e habilidade de
+            modelar problemas.
+          </p>
+          <h4 class="text-lg font-semibold mb-2">
+            Discussão dos Tipos de Problemas e Conceitos Avaliados (P2 - Exemplo
+            Histórico):
+          </h4>
+          <ul class="list-disc list-inside space-y-1 mb-3">
+            <li>Contagem (Combinatória)</li>
+            <li>Funções/Teoria dos Conjuntos</li>
+            <li>Relações</li>
+            <li>Teoria dos Conjuntos (Inclusão-Exclusão)</li>
+            <li>Indução Matemática</li>
+          </ul>
+          <h4 class="text-lg font-semibold mb-2">
+            Implicações da Análise da Prova (P2) para o Estudo:
+          </h4>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar Detalhes da Análise P2
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              A prova P2 (exemplo) revelou ênfase na
+              <strong>modelagem e interpretação</strong>. Questões como
+              queijos/vinhos ou redes sociais exigem tradução para linguagem
+              matemática antes da aplicação de fórmulas.
+            </p>
+            <p>
+              Outro ponto é a necessidade de
+              <strong>justificativas claras e rigorosas</strong>, como na
+              questão de Relações que pedia justificativa para *todas* as
+              propriedades.
+            </p>
+            <p>
+              Finalmente, a prova demonstra a
+              <strong>interconexão entre tópicos</strong>, como Teoria dos
+              Conjuntos e Funções.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_propositions"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.1. Lógica: Proposições e Conectivos Lógicos
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições de Proposições e Conectivos"
+          >
+            Mostrar Definições de Proposições e Conectivos
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Uma <strong>proposição</strong> é um conjunto de palavras ou
+              símbolos que exprimem um pensamento de sentido completo[cite: 40].
+              Fundamentalmente, é uma sentença declarativa que pode ser
+              classificada como <strong>verdadeira (V)</strong> ou
+              <strong>falsa (F)</strong>, mas não ambas simultaneamente[cite:
+              42].
+            </p>
+            <p>
+              <strong>Importante:</strong> Frases exclamativas, interrogativas,
+              imperativas, optativas (expressões de desejo), expressões de
+              sentimentos, interjeições e sentenças que contenham variáveis
+              (sentenças abertas)
+              <strong>não são consideradas proposições</strong> porque não podem
+              ser valoradas como V ou F[cite: 46].
+            </p>
+            <p>
+              <strong>Propriedades das Proposições</strong>[cite: 48, 50, 53]:
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Princípio da Identidade:</strong> Toda proposição é
+                idêntica a si mesma.
+              </li>
+              <li>
+                <strong>Princípio da Não-Contradição:</strong> Uma proposição
+                não pode ser verdadeira e falsa ao mesmo tempo e sob o mesmo
+                aspecto[cite: 51].
+              </li>
+              <li>
+                <strong>Princípio do Terceiro Excluído:</strong> Toda proposição
+                ou é verdadeira ou é falsa, não existindo uma terceira
+                possibilidade.
+              </li>
+            </ul>
+            <p><strong>Tipos de Proposições</strong>[cite: 55, 56]:</p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Proposição Simples (ou Atômica):</strong> Aquela que não
+                contém nenhuma outra proposição como parte de si mesma.
+                Geralmente é denotada por letras minúsculas como $p, q, r,
+                \dots$.
+              </li>
+              <li>
+                <strong>Proposição Composta (ou Molecular):</strong> Formada
+                pela combinação de duas ou mais proposições simples através de
+                conectivos lógicos. Denotada por letras maiúsculas como $P, Q,
+                R, \dots$.
+              </li>
+            </ul>
+            <p>
+              <strong>Conectivos Lógicos e suas Tabelas-Verdade</strong>[cite:
+              91, 92, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692,
+              693]:
+            </p>
+            <div class="table-container mt-2 mb-2">
+              <table>
+                <thead>
+                  <tr>
+                    <th>$p$</th>
+                    <th>$q$</th>
+                    <th>Negação ($\neg p$)</th>
+                    <th>Conjunção ($p \land q$)</th>
+                    <th>Disjunção Inclusiva ($p \lor q$)</th>
+                    <th>Disjunção Exclusiva ($p \veebar q$)</th>
+                    <th>Condicional ($p \rightarrow q$)</th>
+                    <th>Bicondicional ($p \leftrightarrow q$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                  </tr>
+                  <tr>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>F</td>
+                  </tr>
+                  <tr>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>V</td>
+                    <td>F</td>
+                  </tr>
+                  <tr>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>F</td>
+                    <td>V</td>
+                    <td>V</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Negação ($\neg$, $\sim$):</strong> "não". Inverte o
+                valor lógico da proposição. Se $p$ é V, $\neg p$ é F.
+              </li>
+              <li>
+                <strong>Conjunção ($\land$):</strong> "e". Só é V se ambas $p$ e
+                $q$ forem V.
+              </li>
+              <li>
+                <strong>Disjunção Inclusiva ($\lor$):</strong> "ou". Só é F se
+                ambas $p$ e $q$ forem F.
+              </li>
+              <li>
+                <strong
+                  >Disjunção Exclusiva ($\veebar$ ou
+                  $\underline{\lor}$):</strong
+                >
+                "ou... ou... mas não ambos". É V se $p$ e $q$ tiverem valores
+                lógicos diferentes.
+              </li>
+              <li>
+                <strong>Condicional ($\rightarrow$):</strong> "se... então...".
+                $p$ é o antecedente, $q$ é o consequente. Só é F se $p$ for V e
+                $q$ for F.
+              </li>
+              <li>
+                <strong>Bicondicional ($\leftrightarrow$):</strong> "...se e
+                somente se...". É V se $p$ e $q$ tiverem o mesmo valor lógico.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Considere as proposições simples: $p$: "O número 2 é par.", $q$:
+              "A Terra é plana.", $r$: "Brasília é a capital do Brasil." Traduza
+              para simbologia e determine o valor lógico de: <br />a) "O número
+              2 é par E a Terra não é plana." <br />b) "Se Brasília é a capital
+              do Brasil, ENTÃO o número 2 não é par OU a Terra é plana."
+              <br />c) "A Terra ser plana é condição necessária e suficiente
+              para que Brasília não seja a capital do Brasil."
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p class="font-medium">Resolução Esperada:</p>
+              <p>$V(p) = V$, $V(q) = F$, $V(r) = V$.</p>
+              <p>
+                a) $p \land \neg q$. $V(p \land \neg q) = V(p) \land V(\neg q) =
+                V \land \neg F = V \land V = V$.
+              </p>
+              <p>
+                b) $r \rightarrow (\neg p \lor q)$. $V(r \rightarrow (\neg p
+                \lor q)) = V(r) \rightarrow (V(\neg p) \lor V(q)) = V
+                \rightarrow (\neg V \lor F) = V \rightarrow (F \lor F) = V
+                \rightarrow F = F$.
+              </p>
+              <p>
+                c) $q \leftrightarrow \neg r$. $V(q \leftrightarrow \neg r) =
+                V(q) \leftrightarrow V(\neg r) = F \leftrightarrow \neg V = F
+                \leftrightarrow F = V$.
+              </p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=rXyPAcWpKkM"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Lógica Proposicional - Aula 1: Proposições e Conectivos
+                (Exemplo - buscar similar)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=U2_uP3_d3sU"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Conectivos Lógicos (Exemplo - buscar similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Identifique quais das seguintes sentenças são proposições. Para as
+              que são, determine seu valor lógico (se possível): <br />a) "A
+              capital da França é Paris." <br />b) "Que horas são?" <br />c) "x
+              + 5 = 10." <br />d) "Estude para a prova!" <br />e) "Este
+              enunciado é falso."
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2:</p>
+            <p>
+              Sejam $p$: "Está chovendo", $q$: "O sol está brilhando", $r$: "Eu
+              levo meu guarda-chuva". Traduza para a linguagem natural: <br />a)
+              $p \land r$ <br />b) $\neg q \rightarrow p$ <br />c) $(p \lor q)
+              \leftrightarrow \neg r$
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_truth_tables_negations"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.2. Lógica: Tabela Verdade e Negações de Proposições Compostas
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Detalhes sobre Tabelas Verdade e Negações"
+          >
+            Mostrar Detalhes sobre Tabelas Verdade e Negações
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Tabela Verdade:</strong> É uma tabela que exibe o valor
+                lógico de uma proposição composta para todas as combinações
+                possíveis de valores lógicos das proposições simples que a
+                compõem. Se uma proposição composta envolve $n$ proposições
+                simples distintas, sua tabela verdade terá $2^n$ linhas[cite:
+                677].
+              </li>
+              <li>
+                <strong>Negação de Proposições Compostas:</strong> Aplicar o
+                conectivo de negação ($\neg$) a uma proposição composta. As
+                principais negações são dadas pelas Leis de De Morgan e outras
+                equivalências específicas para conectivos como condicional e
+                bicondicional[cite: 881, 882, 883, 884, 885, 886, 887, 888, 889,
+                890, 891, 892, 893, 894, 895, 896, 897, 898, 899, 900, 901, 902,
+                903, 904, 905, 906, 907, 908, 909].
+                <div class="table-container mt-2 mb-2">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Proposição Original</th>
+                        <th>Negação ($\neg$)</th>
+                        <th>Equivalência da Negação</th>
+                        <th>Nome/Referência</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>$p \land q$</td>
+                        <td>$\neg(p \land q)$</td>
+                        <td>$\neg p \lor \neg q$</td>
+                        <td>1ª Lei de De Morgan [cite: 1, 713, 882]</td>
+                      </tr>
+                      <tr>
+                        <td>$p \lor q$</td>
+                        <td>$\neg(p \lor q)$</td>
+                        <td>$\neg p \land \neg q$</td>
+                        <td>2ª Lei de De Morgan [cite: 1, 713, 891]</td>
+                      </tr>
+                      <tr>
+                        <td>$p \rightarrow q$</td>
+                        <td>$\neg(p \rightarrow q)$</td>
+                        <td>$p \land \neg q$</td>
+                        <td>Negação da Condicional [cite: 1, 881]</td>
+                      </tr>
+                      <tr>
+                        <td>$p \leftrightarrow q$</td>
+                        <td>$\neg(p \leftrightarrow q)$</td>
+                        <td>
+                          $p \veebar q$ (ou $(p \land \neg q) \lor (q \land \neg
+                          p)$)
+                        </td>
+                        <td>Negação da Bicondicional [cite: 1, 902, 909]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              a) Construa a tabela verdade para a proposição $(p \rightarrow
+              \neg q) \leftrightarrow (q \lor p)$.
+            </p>
+            <p>
+              b) Encontre a negação da proposição "Se o programa compila, então
+              não há erros de sintaxe e a lógica está correta". (Considere $C$:
+              "O programa compila", $E$: "Há erros de sintaxe", $L$: "A lógica
+              está correta").
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                a) Tabela para $(p \rightarrow \neg q) \leftrightarrow (q \lor
+                p)$:
+              </p>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>$p$</th>
+                      <th>$q$</th>
+                      <th>$\neg q$</th>
+                      <th>$p \rightarrow \neg q$</th>
+                      <th>$q \lor p$</th>
+                      <th>
+                        $(p \rightarrow \neg q) \leftrightarrow (q \lor p)$
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>V</td>
+                      <td>V</td>
+                      <td>F</td>
+                      <td>F</td>
+                      <td>V</td>
+                      <td>F</td>
+                    </tr>
+                    <tr>
+                      <td>V</td>
+                      <td>F</td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td>V</td>
+                    </tr>
+                    <tr>
+                      <td>F</td>
+                      <td>V</td>
+                      <td>F</td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td>V</td>
+                    </tr>
+                    <tr>
+                      <td>F</td>
+                      <td>F</td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td>F</td>
+                      <td>F</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="mt-2">
+                b) Original: $C \rightarrow (\neg E \land L)$. Negação: $\neg (C
+                \rightarrow (\neg E \land L)) \equiv C \land \neg (\neg E \land
+                L) \equiv C \land (E \lor \neg L)$. "O programa compila E (há
+                erros de sintaxe OU a lógica não está correta)".
+              </p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=d4445gWn6kU"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Construindo Tabelas Verdade (Exemplo - buscar similar)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=g5Z_0B9j3gU"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Negação de Proposições Compostas - Leis de De Morgan (Exemplo -
+                buscar similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Construa a tabela verdade para a proposição $((p \land q)
+              \rightarrow r) \lor (\neg p \leftrightarrow q)$.
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2:</p>
+            <p>
+              Escreva a negação das seguintes proposições, simplificando quando
+              possível: <br />a) "O tempo está bom e eu não vou à praia."
+              <br />b) "Se o gato está em casa, então o cachorro está no quintal
+              ou o pássaro está na gaiola."
+            </p>
+          </div>
+        </section>
+        <section
+          id="logic_tautologies"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.3. Lógica: Tautologias, Contradições e Contingências
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições"
+          >
+            Mostrar Definições
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Tautologia:</strong> Uma proposição composta que é
+                <strong>sempre verdadeira</strong>, independentemente dos
+                valores lógicos das proposições simples que a compõem[cite:
+                695]. As tautologias são também conhecidas como Leis
+                Lógicas[cite: 695]. Exemplo clássico: $p \lor \neg p$ (Princípio
+                do Terceiro Excluído).
+              </li>
+              <li>
+                <strong>Contradição:</strong> Uma proposição composta que é
+                <strong>sempre falsa</strong>, independentemente dos valores
+                lógicos das proposições simples[cite: 696]. Uma contradição é
+                intrinsecamente falsa devido à sua própria estrutura lógica e é
+                a negação de uma tautologia (e vice-versa)[cite: 696]. Exemplo
+                clássico: $p \land \neg p$ (Princípio da Não-Contradição).
+              </li>
+              <li>
+                <strong>Contingência:</strong> Uma proposição composta que
+                <strong>não é nem uma tautologia nem uma contradição</strong
+                >[cite: 697]. Isso significa que a última coluna de sua tabela
+                verdade conterá tanto valores Verdadeiro (V) quanto Falso (F),
+                cada um aparecendo pelo menos uma vez[cite: 698].
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Classifique como tautologia, contradição ou contingência, usando
+              tabelas verdade: <br />a) $(p \rightarrow q) \lor (q \rightarrow
+              p)$ <br />b) $\neg (p \rightarrow q) \land (p \land \neg q)$
+              <br />c) $(p \land q) \rightarrow (\neg r \lor p)$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>a) Tautologia.</p>
+              <p>b) Contingência (equivale a $p \land \neg q$).</p>
+              <p>c) Tautologia.</p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=kYhY2nAUj30"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Tautologia, Contradição e Contingência (Exemplo - buscar
+                similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Classifique $(p \land \neg q) \rightarrow (p \veebar q)$ como
+              tautologia, contradição ou contingência.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_equivalences"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.4. Lógica: Equivalências Lógicas
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições e Tabela de Equivalências"
+          >
+            Mostrar Definições e Tabela de Equivalências
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Duas proposições $P$ e $Q$ são ditas
+              <strong>logicamente equivalentes</strong> (denotado por $P \equiv
+              Q$ ou $P \Leftrightarrow Q$) se elas possuem o mesmo valor lógico
+              em todos os casos possíveis, ou seja, se suas tabelas-verdade são
+              idênticas[cite: 700]. De forma alternativa, $P \equiv Q$ se a
+              proposição bicondicional $P \leftrightarrow Q$ é uma
+              tautologia[cite: 700]. A importância das equivalências lógicas
+              reside na possibilidade de substituir uma proposição por outra
+              logicamente equivalente em uma argumentação matemática sem alterar
+              seu valor-verdade[cite: 756].
+            </p>
+            <p>
+              A relação de equivalência lógica possui as seguintes
+              propriedades[cite: 745]:
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li><strong>Reflexiva:</strong> $A \Leftrightarrow A$</li>
+              <li>
+                <strong>Simétrica:</strong> Se $A \Leftrightarrow B$, então $B
+                \Leftrightarrow A$
+              </li>
+              <li>
+                <strong>Transitiva:</strong> Se $A \Leftrightarrow B$ e $B
+                \Leftrightarrow C$, então $A \Leftrightarrow C$
+              </li>
+            </ul>
+            <p>
+              Se A e B são ambas tautologias, ou ambas contradições, então $A
+              \Leftrightarrow B$[cite: 745].
+            </p>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Tabela de Equivalências Lógicas Fundamentais (Compilada de [cite:
+              1, 731, 739, 740, 271, 2]):
+            </h4>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome da Lei</th>
+                    <th>Equivalência</th>
+                    <th>Nome da Lei</th>
+                    <th>Equivalência</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Elementos Neutros</td>
+                    <td>
+                      $p \land V \equiv p$ <br />
+                      $p \lor F \equiv p$
+                    </td>
+                    <td>Dominação</td>
+                    <td>
+                      $p \lor V \equiv V$ <br />
+                      $p \land F \equiv F$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Idempotentes</td>
+                    <td>
+                      $p \lor p \equiv p$ <br />
+                      $p \land p \equiv p$
+                    </td>
+                    <td>Dupla Negação</td>
+                    <td>$\neg (\neg p) \equiv p$</td>
+                  </tr>
+                  <tr>
+                    <td>Comutativa</td>
+                    <td>
+                      $p \lor q \equiv q \lor p$ <br />
+                      $p \land q \equiv q \land p$
+                    </td>
+                    <td>Associativa</td>
+                    <td>
+                      $(p \lor q) \lor r \equiv p \lor (q \lor r)$ <br />
+                      $(p \land q) \land r \equiv p \land (q \land r)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Distributiva</td>
+                    <td>
+                      $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$
+                      <br />
+                      $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$
+                    </td>
+                    <td>Leis de De Morgan</td>
+                    <td>
+                      $\neg (p \lor q) \equiv \neg p \land \neg q$ <br />
+                      $\neg (p \land q) \equiv \neg p \lor \neg q$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Implicação (Condicional)</td>
+                    <td>
+                      $(p \rightarrow q) \equiv (\neg p \lor q)$ <br />
+                      $(p \rightarrow q) \equiv \neg(p \land \neg q)$
+                    </td>
+                    <td>Contraposição</td>
+                    <td>
+                      $(p \rightarrow q) \equiv (\neg q \rightarrow \neg p)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Negação da Condicional</td>
+                    <td>$\neg (p \rightarrow q) \equiv p \land \neg q$</td>
+                    <td>Outras de Condicional</td>
+                    <td>
+                      $\neg p \rightarrow q \equiv p \lor q$ <br />
+                      $\neg(p \rightarrow \neg q) \equiv p \wedge q$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bicondicional</td>
+                    <td>
+                      $(p \leftrightarrow q) \equiv ((p \rightarrow q) \land (q
+                      \rightarrow p))$ <br />
+                      $(p \leftrightarrow q) \equiv ((\neg p \lor q) \land (\neg
+                      q \lor p))$ <br />
+                      $(p \leftrightarrow q) \equiv (p \land q) \lor (\neg p
+                      \land \neg q)$
+                    </td>
+                    <td>Negação da Bicondicional</td>
+                    <td>
+                      $\neg (p \leftrightarrow q) \equiv p \veebar q$ <br />
+                      $\neg (p \leftrightarrow q) \equiv (p \land \neg q) \lor
+                      (q \land \neg p)$ <br />
+                      $\neg (p \leftrightarrow q) \equiv p \leftrightarrow \neg
+                      q$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Absorção</td>
+                    <td>
+                      $p \lor (p \land q) \equiv p$ <br />
+                      $p \land (p \lor q) \equiv p$
+                    </td>
+                    <td>Exportação/Importação</td>
+                    <td>
+                      $((p \land q) \rightarrow r) \equiv (p \rightarrow (q
+                      \rightarrow r))$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outras Prop. Condicionais</td>
+                    <td colspan="3">
+                      $(p \rightarrow q) \land (p \rightarrow r) \equiv p
+                      \rightarrow (q \land r)$ <br />
+                      $(p \rightarrow r) \land (q \rightarrow r) \equiv (p \lor
+                      q) \rightarrow r$ <br />
+                      $(p \rightarrow q) \lor (p \rightarrow r) \equiv p
+                      \rightarrow (q \lor r)$ <br />
+                      $(p \rightarrow r) \lor (q \rightarrow r) \equiv (p \land
+                      q) \rightarrow r$
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Mostre que $\neg (p \lor (\neg p \land q)) \equiv \neg p \land
+              \neg q$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                $\neg (p \lor (\neg p \land q))$<br />
+                $\equiv \neg p \land \neg (\neg p \land q)$ (De Morgan)<br />
+                $\equiv \neg p \land (p \lor \neg q)$ (De Morgan, Dupla
+                Negação)<br />
+                $\equiv (\neg p \land p) \lor (\neg p \land \neg q)$
+                (Distributiva)<br />
+                $\equiv F \lor (\neg p \land \neg q)$ (Negação: $\neg p \land p
+                \equiv F$)<br />
+                $\equiv \neg p \land \neg q$ (Identidade: $F \lor X \equiv X$)
+              </p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=h9CS4F9_3V0"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Equivalências Lógicas Fundamentais (Exemplo - buscar
+                similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Mostre, usando leis de equivalência, que $p \rightarrow (q
+              \rightarrow r) \equiv (p \land q) \rightarrow r$.
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2:</p>
+            <p>
+              Simplifique a proposição $\neg (p \rightarrow \neg q) \lor (\neg p
+              \land q)$.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_implication"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.5. Lógica: Implicação Lógica e Argumentos
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições e Validade"
+          >
+            Mostrar Definições e Validade
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Implicação Lógica ($P \Rightarrow Q$):</strong> Uma
+                proposição $P$ implica logicamente uma proposição $Q$ quando a
+                condicional $P \rightarrow Q$ é uma tautologia[cite: 534]. Isso
+                significa que se $P$ é verdadeira, então $Q$ é necessariamente
+                verdadeira[cite: 535]. A implicação lógica possui propriedades
+                como reflexividade ($A \Rightarrow A$) e transitividade (se $A
+                \Rightarrow B$ e $B \Rightarrow C$, então $A \Rightarrow
+                C$)[cite: 535].
+              </li>
+              <li>
+                <strong>Argumento:</strong> Um argumento é uma sequência de
+                proposições. Todas as proposições, exceto a final, são chamadas
+                de **premissas**. A proposição final é a **conclusão**[cite:
+                598, 599]. A notação $P_1, P_2, \dots, P_n \vdash Q$ indica um
+                argumento com premissas $P_1, \dots, P_n$ e conclusão $Q$.
+              </li>
+              <li>
+                <strong>Validade de um Argumento:</strong> Um argumento é
+                considerado **válido** se, e somente se, a conclusão $Q$ é
+                verdadeira todas as vezes que todas as premissas ($P_1, P_2,
+                \dots, P_n$) são verdadeiras[cite: 636]. Equivalentemente, um
+                argumento é válido se a condicional formada pela conjunção das
+                premissas como antecedente e a conclusão como consequente, ou
+                seja, $(P_1 \land P_2 \land \dots \land P_n) \rightarrow Q$, é
+                uma tautologia[cite: 635]. Um critério fundamental é que, em um
+                argumento válido, é impossível que as premissas sejam
+                verdadeiras e a conclusão seja falsa[cite: 626]. A validade de
+                um argumento depende exclusivamente de sua forma lógica, e não
+                do conteúdo ou da veracidade individual das proposições que o
+                compõem[cite: 637].
+              </li>
+              <li>
+                <strong>Falácia ou Sofisma:</strong> Um argumento que não é
+                válido é denominado falácia ou sofisma[cite: 630, 634]. Falácias
+                são raciocínios incorretos que levam a argumentos inválidos,
+                geralmente porque a forma do argumento não garante a verdade da
+                conclusão mesmo que as premissas sejam verdadeiras[cite: 328].
+                Exemplos de falácias incluem a falácia da afirmação do
+                consequente ($(p \rightarrow q) \land q \rightarrow p$) e a
+                falácia da negação do antecedente ($(p \rightarrow q) \land \neg
+                p \rightarrow \neg q$)[cite: 327].
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Verifique com tabela verdade se o argumento é válido: P1: $p
+              \rightarrow q$, P2: $p$. Conclusão: $q$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Argumento: $((p \rightarrow q) \land p) \rightarrow q$. A tabela
+                verdade mostra que esta proposição é uma tautologia, logo o
+                argumento é válido (Modus Ponens).
+              </p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=T4hVqDk0GfY"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Implicação Lógica e Validade de Argumentos (Exemplo - buscar
+                similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Use tabelas verdade para verificar a validade do argumento: Se
+              $x=2$, então $x^2=4$. $x^2=4$. Portanto, $x=2$.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_inference"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.6. Lógica: Inferência Lógica
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Regras de Inferência"
+          >
+            Mostrar Regras de Inferência
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              <strong>Inferência</strong> é o processo pelo qual se chega a uma
+              conclusão a partir de um conjunto de premissas[cite: 600, 601]. As
+              <strong>Regras de Inferência</strong> são argumentos válidos
+              notáveis que servem como moldes para a construção de demonstrações
+              mais complexas[cite: 230, 628, 629]. Elas são ferramentas
+              fundamentais para estabelecer o valor-verdade de sentenças,
+              permitindo deduzir novas proposições a partir daquelas já
+              conhecidas como verdadeiras[cite: 629].
+            </p>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Tabela de Regras de Inferência Comuns (compilada de [cite: 1, 230,
+              642]):
+            </h4>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome da Regra</th>
+                    <th>Premissas</th>
+                    <th>Conclusão</th>
+                    <th>Tautologia Correspondente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Adição (AD)</td>
+                    <td>$p$</td>
+                    <td>$p \lor q$</td>
+                    <td>$p \rightarrow (p \lor q)$</td>
+                  </tr>
+                  <tr>
+                    <td>Simplificação (SIMP)</td>
+                    <td>$p \land q$</td>
+                    <td>$p$ (ou $q$)</td>
+                    <td>$(p \land q) \rightarrow p$</td>
+                  </tr>
+                  <tr>
+                    <td>Conjunção (CONJ)</td>
+                    <td>$p, q$</td>
+                    <td>$p \land q$</td>
+                    <td>$((p) \land (q)) \rightarrow (p \land q)$</td>
+                  </tr>
+                  <tr>
+                    <td>Modus Ponens (MP)</td>
+                    <td>$p \rightarrow q, p$</td>
+                    <td>$q$</td>
+                    <td>$(p \land (p \rightarrow q)) \rightarrow q$</td>
+                  </tr>
+                  <tr>
+                    <td>Modus Tollens (MT)</td>
+                    <td>$p \rightarrow q, \neg q$</td>
+                    <td>$\neg p$</td>
+                    <td>
+                      $(\neg q \land (p \rightarrow q)) \rightarrow \neg p$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Silogismo Hipotético (SH)</td>
+                    <td>$p \rightarrow q, q \rightarrow r$</td>
+                    <td>$p \rightarrow r$</td>
+                    <td>
+                      $((p \rightarrow q) \land (q \rightarrow r)) \rightarrow
+                      (p \rightarrow r)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Silogismo Disjuntivo (SD)</td>
+                    <td>$p \lor q, \neg p$</td>
+                    <td>$q$</td>
+                    <td>$((p \lor q) \land \neg p) \rightarrow q$</td>
+                  </tr>
+                  <tr>
+                    <td>Resolução</td>
+                    <td>$p \lor q, \neg p \lor r$</td>
+                    <td>$q \lor r$</td>
+                    <td>
+                      $((p \lor q) \land (\neg p \lor r)) \rightarrow (q \lor
+                      r)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dilema Construtivo</td>
+                    <td>
+                      $(p \rightarrow q) \land (r \rightarrow s), p \lor r$
+                    </td>
+                    <td>$q \lor s$</td>
+                    <td>
+                      $(((p \rightarrow q) \land (r \rightarrow s)) \land (p
+                      \lor r)) \rightarrow (q \lor s)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dilema Destrutivo</td>
+                    <td>
+                      $(p \rightarrow q) \land (r \rightarrow s), \neg q \lor
+                      \neg s$
+                    </td>
+                    <td>$\neg p \lor \neg r$</td>
+                    <td>
+                      $(((p \rightarrow q) \land (r \rightarrow s)) \land (\neg
+                      q \lor \neg s)) \rightarrow (\neg p \lor \neg r)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Absorção</td>
+                    <td>$p \rightarrow q$</td>
+                    <td>$p \rightarrow (p \land q)$</td>
+                    <td>
+                      $(p \rightarrow q) \rightarrow (p \rightarrow (p \land
+                      q))$
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Use regras de inferência para mostrar que $\neg p$ segue das
+              premissas: $p \rightarrow q, q \rightarrow r, \neg r$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <ol class="list-decimal list-inside">
+                <li>$p \rightarrow q$ (Premissa)</li>
+                <li>$q \rightarrow r$ (Premissa)</li>
+                <li>$\neg r$ (Premissa)</li>
+                <li>$p \rightarrow r$ (SH: 1, 2)</li>
+                <li>$\neg p$ (MT: 4, 3)</li>
+              </ol>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=_hdJNkXpM4k"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Regras de Inferência Lógica (Exemplo - buscar similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Use regras de inferência para validar o argumento: <br />1. $p
+              \lor q$ <br />2. $p \rightarrow r$ <br />3. $\neg r$
+              <br />Conclusão: $q$
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_open_sentences"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.7. Lógica: Sentenças Abertas
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definição e Exemplos"
+          >
+            Mostrar Definição e Exemplos
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Sentença Aberta (ou Função Proposicional):</strong> É
+                uma declaração que contém uma ou mais variáveis e que se torna
+                uma proposição (podendo ser valorada como V ou F) quando cada
+                uma de suas variáveis é substituída por um valor específico
+                pertencente a um conjunto denominado Universo de Discurso[cite:
+                391, 392, 393, 394, 395]. Exemplos: "$x > 3$", "$x + y =
+                z$"[cite: 391]. Sentenças abertas, por si sós, não possuem valor
+                verdade, logo não são proposições até que suas variáveis sejam
+                instanciadas ou quantificadas[cite: 393].
+              </li>
+              <li>
+                <strong>Universo de Discurso (U) (ou Domínio):</strong> É o
+                conjunto de todos os valores que as variáveis de uma sentença
+                aberta podem assumir[cite: 449, 450]. É crucial especificar o
+                domínio para determinar o valor verdade de sentenças
+                quantificadas.
+              </li>
+              <li>
+                <strong>Conjunto Verdade ($V_P$):</strong> Para uma sentença
+                aberta $P(x)$ com universo de discurso $A$, o conjunto verdade
+                de $P(x)$ é o conjunto de todos os elementos $a \in A$ para os
+                quais $P(a)$ é uma proposição verdadeira[cite: 398].
+                Formalmente, $V_P = \{x \in A \mid P(x) \text{ é
+                Verdadeira}\}$[cite: 399, 400, 401, 402]. Para sentenças com
+                múltiplas variáveis, como $P(x,y)$ com domínios $A$ e $B$
+                respectivamente, $V_P = \{(x,y) \in A \times B \mid P(x,y)
+                \text{ é Verdadeira}\}$[cite: 404, 405, 406, 407, 408].
+              </li>
+              <li>
+                <strong
+                  >Classificação de Sentenças Abertas (baseado no Conjunto
+                  Verdade)</strong
+                >[cite: 403]:
+                <ul class="list-disc list-inside ml-4">
+                  <li>
+                    <strong>Condição Universal:</strong> Se $V_P = A$, ou seja,
+                    $P(x)$ é verdadeira para todo $x \in A$.
+                  </li>
+                  <li>
+                    <strong>Condição Possível:</strong> Se $V_P \neq \emptyset$
+                    e $V_P \subset A$, ou seja, $P(x)$ é verdadeira para alguns
+                    (mas não todos) valores de $x \in A$.
+                  </li>
+                  <li>
+                    <strong>Condição Impossível:</strong> Se $V_P = \emptyset$,
+                    ou seja, $P(x)$ não é verdadeira para nenhum valor de $x \in
+                    A$.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Operações Lógicas com Sentenças Abertas:</strong> Assim
+                como proposições, sentenças abertas podem ser combinadas usando
+                conectivos lógicos ($\land, \lor, \neg, \rightarrow,
+                \leftrightarrow$) para formar novas sentenças abertas[cite: 410,
+                411, 412, 413, 414, 415, 416]. Por exemplo, se $P(x): x > 2$ e
+                $Q(x): x < 8$, então $(P \land Q)(x): x > 2 \land x < 8$.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Seja $U = \{1, 2, 3, 4, 5\}$. $P(x): "x \text{ é par}"$, $Q(x): "x
+              + 2 > 5"$, $R(x, y): "x + y = 6"$. <br />a) Conjunto verdade de
+              $P(x)$? <br />b) Conjunto verdade de $Q(x)$? <br />c) Pares que
+              tornam $R(x,y)$ V: (1,5), (2,3), (3,3), (4,2)?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p class="font-medium">Resolução Esperada:</p>
+              <p>a) Conjunto verdade de $P(x)$: $\{2, 4\}$.</p>
+              <p>b) Conjunto verdade de $Q(x)$: $\{4, 5\}$.</p>
+              <p>
+                c) $R(1,5)$ é V. $R(2,3)$ é F. $R(3,3)$ é V. $R(4,2)$ é V. Pares
+                V: (1,5), (3,3), (4,2).
+              </p>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=tyAb00f2gL4"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Introdução a Sentenças Abertas (Exemplo - buscar similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Para $U = \mathbb{Z}$ (inteiros), encontre o conjunto verdade de
+              $S(x): "x^2 - 4 = 0"$.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="logic_quantifiers_predicates"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            3.8. Lógica: Quantificadores e Predicados
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições, Equivalências e Inferências"
+          >
+            Mostrar Definições, Equivalências e Inferências
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              A <strong>Lógica de Predicados</strong> é uma extensão da lógica
+              proposicional que permite analisar a estrutura interna das
+              proposições, introduzindo variáveis, predicados e
+              quantificadores[cite: 389].
+            </p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Predicado:</strong> É uma propriedade ou relação que
+                pode ser atribuída a uma ou mais variáveis (sujeitos)[cite: 420,
+                423]. Por exemplo, na sentença "$x$ é maior que 3", $P(x): x >
+                3$, "$P$" é o predicado "ser maior que 3" e $x$ é a
+                variável[cite: 426]. Uma sentença aberta como $P(x)$ torna-se
+                uma proposição quando a variável $x$ é substituída por um valor
+                específico do domínio ou quando é quantificada[cite: 428].
+              </li>
+              <li>
+                <strong>Quantificadores:</strong> São usados para transformar
+                predicados em proposições, especificando "quantos" elementos do
+                domínio satisfazem o predicado[cite: 436].
+                <ul class="list-disc list-inside ml-4">
+                  <li>
+                    <strong>Quantificador Universal ($\forall$):</strong>
+                    Representa "para todo", "para qualquer", "para cada"[cite:
+                    456]. A proposição $\forall x P(x)$ é verdadeira se, e
+                    somente se, $P(x)$ é verdadeira para todos os valores de $x$
+                    no universo de discurso (domínio)[cite: 457, 458]. Se existe
+                    ao menos um $x$ para o qual $P(x)$ é falsa, este $x$ é um
+                    **contraexemplo**, e $\forall x P(x)$ é falsa[cite: 459].
+                  </li>
+                  <li>
+                    <strong>Quantificador Existencial ($\exists$):</strong>
+                    Representa "existe um", "para algum", "pelo menos um"[cite:
+                    456]. A proposição $\exists x P(x)$ é verdadeira se, e
+                    somente se, existe pelo menos um valor de $x$ no universo de
+                    discurso para o qual $P(x)$ é verdadeira[cite: 469, 470].
+                    Tal $x$ é chamado de **testemunha**[cite: 470].
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Universo de Discurso (Domínio):</strong> É o conjunto de
+                valores que as variáveis podem assumir. É crucial definir o
+                domínio para determinar o valor lógico de proposições
+                quantificadas[cite: 449].
+              </li>
+              <li>
+                <strong>Ordem dos Quantificadores:</strong> A ordem dos
+                quantificadores importa quando são diferentes e aplicados a
+                predicados com múltiplas variáveis. Por exemplo, $\forall x
+                \exists y P(x,y)$ geralmente não é equivalente a $\exists y
+                \forall x P(x,y)$[cite: 485].
+              </li>
+            </ul>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Equivalências Lógicas com Quantificadores[cite: 1, 478, 480, 481,
+              482, 213, 487, 488, 489, 490, 491]:
+            </h4>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Equivalência</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Distribuição de $\forall$ sobre $\land$</td>
+                    <td>
+                      $\forall x [P(x) \land Q(x)] \equiv \forall x P(x) \land
+                      \forall x Q(x)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Distribuição de $\exists$ sobre $\lor$</td>
+                    <td>
+                      $\exists x [P(x) \lor Q(x)] \equiv \exists x P(x) \lor
+                      \exists x Q(x)$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <strong>Leis de De Morgan para Quantificadores:</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Negação de $\forall$</td>
+                    <td>$\neg \forall x P(x) \equiv \exists x \neg P(x)$</td>
+                  </tr>
+                  <tr>
+                    <td>Negação de $\exists$</td>
+                    <td>$\neg \exists x P(x) \equiv \forall x \neg P(x)$</td>
+                  </tr>
+                  <tr>
+                    <td>Outras formas</td>
+                    <td>$\forall x P(x) \equiv \neg \exists x \neg P(x)$</td>
+                  </tr>
+                  <tr>
+                    <td>Outras formas</td>
+                    <td>$\exists x P(x) \equiv \neg \forall x \neg P(x)$</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-sm italic mt-1">
+                Nota: $\forall x (P(x) \lor Q(x)) \not\equiv \forall x P(x) \lor
+                \forall x Q(x)$ e $\exists x (P(x) \land Q(x)) \not\equiv
+                \exists x P(x) \land \exists x Q(x)$[cite: 480, 481].
+              </p>
+            </div>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Regras de Inferência para Proposições Quantificadas[cite: 1, 214,
+              215, 521, 522, 523, 524, 525, 526]:
+            </h4>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Premissa(s)</th>
+                    <th>Conclusão</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Instanciação Universal (IU)</td>
+                    <td>$\forall x P(x)$</td>
+                    <td>$P(c)$</td>
+                    <td>
+                      Se $P(x)$ é verdade para todos, é verdade para um $c$
+                      específico do domínio.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Generalização Universal (GU)</td>
+                    <td>$P(c)$ para um $c$ arbitrário</td>
+                    <td>$\forall x P(x)$</td>
+                    <td>
+                      Se $P(c)$ é verdade para um $c$ genérico do domínio, é
+                      verdade para todos.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Instanciação Existencial (IE)</td>
+                    <td>$\exists x P(x)$</td>
+                    <td>$P(c)$ para algum $c$</td>
+                    <td>
+                      Se $P(x)$ é verdade para algum $x$, podemos nomear esse
+                      elemento $c$. ($c$ deve ser novo na derivação).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Generalização Existencial (GE)</td>
+                    <td>$P(c)$ para algum $c$</td>
+                    <td>$\exists x P(x)$</td>
+                    <td>
+                      Se $P(c)$ é verdade para um $c$ específico, então existe
+                      um $x$ para o qual $P(x)$ é verdade.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong
+                >Ordem de Prioridade dos Operadores e Quantificadores:</strong
+              >
+              ① Parênteses, ② Quantificadores ($\forall, \exists$), ③ Operadores
+              Lógicos ($\neg, \land, \lor, \rightarrow, \leftrightarrow$)[cite:
+              216].
+            </p>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Exemplo (Estilo Prova)
+          </h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Questão:</p>
+            <p>
+              Seja $U = \mathbb{Z}$. $P(x): "x > 0"$, $Q(x): "x \text{ é par}"$,
+              $L(x,y): "x < y"$. Traduza e determine o valor lógico: <br />a)
+              "Todos os números inteiros são positivos." <br />b) "Existe pelo
+              menos um número inteiro par." <br />c) "Para todo $x \in
+              \mathbb{Z}$, existe $y \in \mathbb{Z}$ tal que $x < y$." <br />d)
+              Negue (c) simbolicamente (negação interna) e traduza para
+              linguagem natural.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p class="font-medium">Resolução Esperada:</p>
+              <p>a) $(\forall x \in \mathbb{Z}) P(x)$. Valor: F.</p>
+              <p>b) $(\exists x \in \mathbb{Z}) Q(x)$. Valor: V.</p>
+              <p>
+                c) $(\forall x \in \mathbb{Z}) (\exists y \in \mathbb{Z})
+                L(x,y)$. Valor: V.
+              </p>
+              <p>
+                d) Negação: $\neg ((\forall x) (\exists y) L(x,y)) \equiv
+                (\exists x) \neg ((\exists y) L(x,y)) \equiv (\exists x)
+                (\forall y) \neg L(x,y) \equiv (\exists x) (\forall y) (x \ge
+                y)$. <br />"Existe um inteiro $x$ tal que para todo inteiro $y$,
+                $x$ é maior ou igual a $y$." (Falso)
+              </p>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=f00b7k4RkCQ"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >Lógica de Predicados: Quantificadores (Exemplo - buscar
+                similar)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões para Prática</h3>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Seja $U$ o conjunto de todos os estudantes. $P(x): "x$ estuda
+              Matemática Discreta". $Q(x): "x$ gosta de Lógica". Traduza:
+              <br />a) "Todos os estudantes que estudam Matemática Discreta
+              gostam de Lógica." <br />b) "Existe um estudante que não estuda
+              Matemática Discreta mas gosta de Lógica." <br />c) Negue a
+              proposição (a).
+            </p>
+          </div>
+        </section>
+        <section
+          id="sets"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.1. Teoria dos Conjuntos
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Fundamentais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Definições e Tipos de Conjuntos"
+          >
+            Mostrar Definições e Tipos de Conjuntos
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Um <strong>conjunto</strong> é uma coleção desordenada de zero ou
+              mais objetos distintos[cite: 3, 4]. Esses objetos são chamados de
+              <strong>elementos</strong> do conjunto[cite: 4].
+            </p>
+            <p>
+              <strong>Notação:</strong> Conjuntos são geralmente denotados por
+              letras maiúsculas (ex: $A, B, C$), e seus elementos por letras
+              minúsculas (ex: $a, b, c$)[cite: 5]. Ex: $C = \{a, e, i, o, u\}$
+              representa o conjunto das vogais[cite: 5].
+            </p>
+            <p><strong>Representação de Conjuntos</strong>[cite: 6, 7, 8]:</p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Listagem (Enumeração):</strong> Os elementos são
+                explicitamente listados entre chaves. Ex: $A = \{amarelo, azul,
+                vermelho\}$[cite: 2], $C = \{2, 3, 5, 7\}$[cite: 2].
+              </li>
+              <li>
+                <strong>Propriedade (Compreensão):</strong> O conjunto é
+                descrito por uma propriedade que seus elementos devem
+                satisfazer. Ex: $P = \{x \mid x \text{ é um número
+                primo}\}$[cite: 7].
+              </li>
+              <li>
+                <strong>Diagrama de Venn:</strong> Representação gráfica de
+                conjuntos e suas relações usando círculos ou outras formas
+                dentro de um retângulo (que representa o conjunto
+                universo)[cite: 8, 55].
+              </li>
+            </ul>
+            <p>
+              <strong>Tipos de Conjuntos</strong>[cite: 9, 11, 12, 13, 14, 15,
+              16, 17]:
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Conjunto Finito:</strong> Possui um número limitado de
+                elementos, que podem ser todos listados ou contados. Ex: $C =
+                \{a,b,c\}$[cite: 11]. $S = \{x \in \mathbb{Z} \mid -2 < x < 3\}
+                = \{-1, 0, 1, 2\}$[cite: 9].
+              </li>
+              <li>
+                <strong>Conjunto Infinito:</strong> Possui um número ilimitado
+                de elementos. Ex: $A = \{2,4,6,...\}$ (conjunto dos números
+                pares positivos)[cite: 11]. $D = \{x \in \mathbb{R} \mid x \ge
+                0\}$[cite: 9].
+              </li>
+              <li>
+                <strong>Conjunto Vazio ($\emptyset$ ou $\{\}$):</strong> É o
+                conjunto que não contém nenhum elemento[cite: 14]. Ex: O
+                conjunto de todos os brasileiros com mais de 150 anos[cite: 13,
+                14].
+              </li>
+              <li>
+                <strong>Conjunto Unitário:</strong> É um conjunto que contém
+                exatamente um elemento[cite: 15]. Ex: $C = \{y \in \mathbb{N}
+                \mid 2 < y < 4\}$ resulta em $C = \{3\}$[cite: 15]. O conjunto
+                dos números primos que são simultaneamente pares é
+                $P=\{2\}$[cite: 16].
+              </li>
+              <li>
+                <strong>Conjunto Universo ($U$):</strong> É o conjunto que
+                contém todos os elementos possíveis sob consideração em uma
+                determinada situação ou problema[cite: 13, 17].
+              </li>
+            </ul>
+            <p>
+              <strong>Principais Conjuntos Numéricos</strong>[cite: 18, 19]:
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>$\mathbb{N}$: Conjunto dos números Naturais.</li>
+              <li>$\mathbb{Z}$: Conjunto dos números Inteiros.</li>
+              <li>$\mathbb{Q}$: Conjunto dos números Racionais.</li>
+              <li>$\mathbb{I}$: Conjunto dos números Irracionais.</li>
+              <li>$\mathbb{R}$: Conjunto dos números Reais.</li>
+              <li>$\mathbb{C}$: Conjunto dos números Complexos.</li>
+            </ul>
+            <p>
+              <strong>Relação de Pertinência ($\in, \notin$):</strong> Indica se
+              um objeto é ou não um elemento de um conjunto[cite: 20]. Por
+              exemplo, se $G=\{a\}$, então $a \in G$ (lê-se "a pertence a G") e
+              $b \notin G$ (lê-se "b não pertence a G")[cite: 20, 21].
+            </p>
+            <p>
+              <strong
+                >Subconjuntos e Relação de Continência ($\subseteq, \supseteq,
+                \subset, \supset, \not\subseteq, \not\supseteq$):</strong
+              >
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                Um conjunto $A$ é chamado <strong>subconjunto</strong> de um
+                conjunto $B$, denotado $A \subseteq B$ (lê-se "A está contido em
+                B"), se cada elemento de $A$ também é um elemento de $B$[cite:
+                22, 23, 24].
+              </li>
+              <li>
+                Se $A \subseteq B$ e $A \neq B$, então $A$ é um
+                <strong>subconjunto próprio</strong> de $B$, denotado $A \subset
+                B$.
+              </li>
+              <li>
+                $B \supseteq A$ significa "$B$ contém $A$", que é equivalente a
+                $A \subseteq B$[cite: 23].
+              </li>
+              <li>
+                Os símbolos $\not\subseteq$ e $\not\supseteq$ indicam a negação
+                da continência[cite: 23].
+              </li>
+            </ul>
+            <p>
+              <strong>Conjunto das Partes ($P(A)$):</strong> Dado um conjunto
+              $A$, o conjunto das partes de $A$, denotado $P(A)$, é o conjunto
+              de todos os subconjuntos de $A$[cite: 29]. Ele sempre contém o
+              conjunto vazio ($\emptyset$) e o próprio conjunto $A$ como
+              elementos[cite: 30]. Se um conjunto $A$ tem $n$ elementos (ou
+              seja, sua cardinalidade é $|A|=n$), então o número de elementos em
+              $P(A)$ é $2^n$, ou seja, $n(P(A)) = 2^{|A|}$[cite: 31, 32].
+              Exemplo: Se $A=\{1,2,3\}$, então $|A|=3$ e $n(P(A))=2^3=8$. Os
+              subconjuntos são: $P(A) = \{\emptyset, \{1\}, \{2\}, \{3\},
+              \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}\}$[cite: 33, 34, 35].
+            </p>
+            <p>
+              <strong>Partição de um Conjunto:</strong> Uma partição de um
+              conjunto $A$ é uma coleção de subconjuntos não vazios de $A$,
+              $A_1, A_2, \dots, A_k$, tais que: 1) Os subconjuntos são disjuntos
+              dois a dois ($A_i \cap A_j = \emptyset$ para $i \neq j$). 2) A
+              união de todos os subconjuntos é igual ao conjunto original $A$
+              ($\bigcup_{i=1}^{k} A_i = A$)[cite: 36, 37]. É como dividir o
+              conjunto em partes independentes e distintas[cite: 38].
+            </p>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Operações com Conjuntos
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Operações e Propriedades"
+          >
+            Mostrar Operações e Propriedades
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Sejam A e B subconjuntos de um conjunto universo U[cite: 41]. As
+              principais operações são:
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>União ($A \cup B$):</strong> O conjunto de todos os
+                elementos que pertencem a A, ou a B, ou a ambos[cite: 42].
+                Formalmente: $A \cup B = \{x \mid x \in A \lor x \in B\}$.
+              </li>
+              <li>
+                <strong>Interseção ($A \cap B$):</strong> O conjunto de todos os
+                elementos que pertencem simultaneamente a A e a B[cite: 43].
+                Formalmente: $A \cap B = \{x \mid x \in A \land x \in B\}$. Se
+                $A \cap B = \emptyset$, os conjuntos A e B são ditos
+                <strong>disjuntos</strong>[cite: 50].
+              </li>
+              <li>
+                <strong>Diferença ($A - B$ ou $A \setminus B$):</strong> O
+                conjunto de todos os elementos que pertencem a A mas não
+                pertencem a B[cite: 44]. Formalmente: $A - B = \{x \mid x \in A
+                \land x \notin B\}$.
+              </li>
+              <li>
+                <strong>Complementar ($A^c$ ou $\bar{A}$):</strong> O conjunto
+                de todos os elementos do conjunto universo U que não pertencem a
+                A. Formalmente: $A^c = U - A = \{x \in U \mid x \notin A\}$.
+              </li>
+            </ul>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Propriedades das Operações com Conjuntos[cite: 50]:
+            </h4>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Propriedade</th>
+                    <th>União</th>
+                    <th>Interseção</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Idempotência</td>
+                    <td>$A \cup A = A$</td>
+                    <td>$A \cap A = A$</td>
+                  </tr>
+                  <tr>
+                    <td>Comutatividade</td>
+                    <td>$A \cup B = B \cup A$</td>
+                    <td>$A \cap B = B \cap A$</td>
+                  </tr>
+                  <tr>
+                    <td>Associatividade</td>
+                    <td>$(A \cup B) \cup C = A \cup (B \cup C)$</td>
+                    <td>$(A \cap B) \cap C = A \cap (B \cap C)$</td>
+                  </tr>
+                  <tr>
+                    <td>Distributividade</td>
+                    <td>$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$</td>
+                    <td>$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$</td>
+                  </tr>
+                  <tr>
+                    <td>Absorção</td>
+                    <td>$A \cup (A \cap B) = A$</td>
+                    <td>$A \cap (A \cup B) = A$</td>
+                  </tr>
+                  <tr>
+                    <td>Identidade</td>
+                    <td>$A \cup \emptyset = A$</td>
+                    <td>$A \cap U = A$</td>
+                  </tr>
+                  <tr>
+                    <td>Dominação</td>
+                    <td>$A \cup U = U$</td>
+                    <td>$A \cap \emptyset = \emptyset$</td>
+                  </tr>
+                  <tr>
+                    <td>Complementar</td>
+                    <td>$A \cup A^c = U$</td>
+                    <td>$A \cap A^c = \emptyset$</td>
+                  </tr>
+                  <tr>
+                    <td>Leis de De Morgan</td>
+                    <td colspan="2">
+                      $(A \cup B)^c = A^c \cap B^c$ <br />
+                      $(A \cap B)^c = A^c \cup B^c$
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Leis de De Morgan (para Diferença)</td>
+                    <td colspan="2">
+                      $A - (B \cup C) = (A - B) \cap (A - C)$ <br />
+                      $A - (B \cap C) = (A - B) \cup (A - C)$
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Cardinalidade e Princípio da Inclusão-Exclusão
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Detalhes da Cardinalidade"
+          >
+            Mostrar Detalhes da Cardinalidade
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              O tamanho de um conjunto finito, chamado de sua
+              <strong>cardinalidade</strong>, é dado pelo seu número de
+              elementos distintos, sendo um inteiro não-negativo[cite: 51]. A
+              notação para a cardinalidade do conjunto A é $n(A)$ ou $|A|$[cite:
+              52].
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                Se A e B são conjuntos finitos disjuntos (ou seja, $A \cap B =
+                \emptyset$), então a cardinalidade de sua união é a soma de suas
+                cardinalidades: $n(A \cup B) = n(A) + n(B)$[cite: 54].
+              </li>
+              <li>
+                Para conjuntos finitos A e B que não são necessariamente
+                disjuntos, o
+                <strong>Princípio da Inclusão-Exclusão</strong> para dois
+                conjuntos afirma que: $n(A \cup B) = n(A) + n(B) - n(A \cap
+                B)$[cite: 54]. Subtrai-se a interseção para evitar contar duas
+                vezes os elementos comuns.
+              </li>
+              <li>
+                Para três conjuntos finitos A, B e C, o princípio se estende
+                para: $n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) -
+                n(A \cap C) - n(B \cap C) + n(A \cap B \cap C)$[cite: 54].
+              </li>
+            </ul>
+            <p>
+              O <strong>Diagrama de Venn</strong> é uma representação visual
+              útil para conjuntos e suas relações, especialmente ao aplicar o
+              princípio da inclusão-exclusão para resolver problemas de
+              contagem[cite: 55].
+            </p>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Similar à Q8 da prova P2):</p>
+            <p>
+              "Uma pesquisa foi realizada com 80 usuários de uma plataforma para
+              entender o uso de três redes sociais populares: Bluebird (B),
+              TikTalk (T) e ChirpBrûlée (C). Dados: $n(B \text{ somente})=1$;
+              $n(C \text{ somente})=2$; $n(B \cap T \cap C)=5$; $n((B \cap T)
+              \setminus C)=30$; $n((T \cap C) \setminus B)=2$. Sabe-se que $n((B
+              \cap C) \setminus T) = n(T \text{ somente}) = x$. Determine o
+              total de usuários que utilizam TikTalk, $n(T)$."
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>Utilizando um Diagrama de Venn e as informações fornecidas:</p>
+              <p>
+                Soma de todas as regiões (assumindo que os 80 usam pelo menos
+                uma rede):<br />
+                $n(B \text{ só}) + n(C \text{ só}) + n(T \text{ só}) + n(B \cap
+                T \text{ não } C) + n(T \cap C \text{ não } B) + n(B \cap C
+                \text{ não } T) + n(B \cap T \cap C) = 80$
+              </p>
+              <p>$1 + 2 + x + 30 + 2 + x + 5 = 80$</p>
+              <p>$2x + 40 = 80 \Rightarrow 2x = 40 \Rightarrow x = 20$.</p>
+              <p>Portanto, $n(T \text{ somente}) = 20$.</p>
+              <p>
+                O total de usuários que utilizam TikTalk é a soma das regiões
+                que compõem T:<br />
+                $n(T) = n(T \text{ somente}) + n((B \cap T) \setminus C) + n((T
+                \cap C) \setminus B) + n(B \cap T \cap C)$
+              </p>
+              <p>$n(T) = 20 + 30 + 2 + 5 = 57$.</p>
+              <p><strong>Resposta:</strong> 57 usuários utilizam TikTalk.</p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Dados os conjuntos $A = \{x \in \mathbb{Z} \mid -3 < x \leq 2\}$,
+              $B = \{x \in \mathbb{N} \mid x \text{ é divisor de 12}\}$ e $C =
+              \{0, 1, 2, 3, 4\}$. Determine: a) $(A \cup B) \cap C$; b) $A - (B
+              \cap C)$; c) $n(P(A \cap B))$
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2 (Diagrama de Venn):</p>
+            <p>
+              Numa pesquisa sobre a preferência de leitura de três revistas (X,
+              Y, Z), obteve-se: 40 leem X, 30 leem Y, 50 leem Z, 10 leem X e Y,
+              15 leem Y e Z, 12 leem X e Z, e 7 leem as três. Quantas pessoas
+              leem apenas uma das revistas? Quantas pessoas foram pesquisadas?
+            </p>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Observações Específicas
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              A Questão 8 da prova de referência P2 é um exemplo claro da
+              necessidade de traduzir informações textuais em um modelo de
+              conjuntos (Diagrama de Venn). A prática com problemas desse tipo é
+              fundamental. Dominar as Leis de De Morgan também é importante.
+            </p>
+          </div>
+        </section>
+        <section
+          id="sequences"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">4.2. Sequências</h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Detalhes sobre Sequências"
+          >
+            Mostrar Detalhes sobre Sequências
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Definição:</strong> Uma sequência é uma função cujo
+                domínio é um conjunto de inteiros (geralmente $\mathbb{N} = \{0,
+                1, 2, ...\}$ ou $\mathbb{Z}^+ = \{1, 2, 3, ...\}$) ou um
+                subconjunto finito de inteiros, e cujo contradomínio pode ser
+                qualquer conjunto $S$. Os termos da sequência são $a_n = f(n)$.
+              </li>
+              <li>
+                <strong>Termo Geral (Fórmula Explícita):</strong> Expressa o
+                $n$-ésimo termo $a_n$ da sequência diretamente em função de $n$.
+                Ex: $a_n = 3n + 1$, para $n \ge 0$.
+              </li>
+              <li>
+                <strong>Relação de Recorrência (Definição Recursiva):</strong>
+                Define um termo da sequência em função de um ou mais termos
+                anteriores. Requer um ou mais **casos base** (termos iniciais)
+                para iniciar a sequência. Ex: $a_0=1$, e $a_n = a_{n-1} + 2n$
+                para $n \ge 1$.
+              </li>
+              <li>
+                <strong>Progressão Aritmética (PA):</strong> Sequência onde a
+                diferença entre termos consecutivos é constante, chamada de
+                razão ($r$). Termo geral: $a_n = a_1 + (n-1)r$. Soma dos $n$
+                primeiros termos: $S_n = \frac{n(a_1+a_n)}{2}$.
+              </li>
+              <li>
+                <strong>Progressão Geométrica (PG):</strong> Sequência onde a
+                razão (quociente) entre termos consecutivos é constante, chamada
+                de razão ($q$). Termo geral: $a_n = a_1 \cdot q^{n-1}$. Soma dos
+                $n$ primeiros termos (para $q \neq 1$): $S_n =
+                \frac{a_1(q^n-1)}{q-1}$. Se $q=1$, $S_n = n \cdot a_1$. Soma
+                infinita (para $|q|<1$): $S = \frac{a_1}{1-q}$.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=yP7YPA2iQYI"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >PROGRESSÃO ARITMÉTICA (PA) COMPLETA (Ferretto Matemática)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=L0Unc2y3pbY"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >PROGRESSÃO GEOMÉTRICA (PG) COMPLETA (Ferretto Matemática)</a
+              >
+            </li>
+          </ul>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida:</p>
+            <p>
+              Encontre o 15º termo e a soma dos 15 primeiros termos da sequência
+              definida recursivamente por $a_1 = 3$ e $a_n = a_{n-1} + 4$ para
+              $n > 1$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>PA com $a_1 = 3, r=4$.</p>
+              <p>$a_{15} = a_1 + (15-1)r = 3 + 14 \cdot 4 = 3 + 56 = 59$.</p>
+              <p>
+                $S_{15} = \frac{(a_1+a_{15}) \cdot 15}{2} = \frac{(3+59) \cdot
+                15}{2} = \frac{62 \cdot 15}{2} = 465$.
+              </p>
+              <p><strong>Resposta:</strong> $a_{15} = 59$, $S_{15} = 465$.</p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Uma cultura de bactérias dobra a cada hora. Se inicialmente havia
+              1000 bactérias, qual o número de bactérias após 5 horas? Escreva o
+              termo geral desta sequência.
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2:</p>
+            <p>
+              Determine o termo geral da sequência cujos primeiros termos são
+              $(1/2, 2/3, 3/4, 4/5,...)$.
+            </p>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Observações Específicas
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              A compreensão de sequências é fundamental para somatórios e
+              indução matemática (como na Q10 da prova P2). Entender como
+              sequências são definidas (termo geral ou recorrência) é crucial.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="summations_products"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.3. Somatórios e Produtórios
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Notação Sigma ($\sum$):</strong> $\sum_{k=m}^{n} a_k =
+                a_m + \dots + a_n$.
+              </li>
+              <li>
+                <strong>Notação Pi ($\prod$):</strong> $\prod_{k=m}^{n} a_k =
+                a_m \cdot \dots \cdot a_n$.
+              </li>
+              <li>
+                <strong>Propriedades dos Somatórios:</strong> $\sum c \cdot a_k
+                = c \sum a_k$; $\sum (a_k+b_k) = \sum a_k + \sum b_k$; $\sum c =
+                (n-m+1)c$.
+              </li>
+              <li>
+                <strong>Fórmulas Notáveis:</strong> $\sum_{k=1}^{n} k =
+                \frac{n(n+1)}{2}$; $\sum_{k=1}^{n} k^2 =
+                \frac{n(n+1)(2n+1)}{6}$.
+              </li>
+              <li>
+                <strong>Somatórios Telescópicos:</strong> Termos intermediários
+                se cancelam.
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=WwF0zL6b28I"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >SOMATÓRIO E SUAS PROPRIEDADES (Equaciona com Prof. Paulo
+                Pereira)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida:</p>
+            <p>Calcule o valor do somatório $\sum_{j=2}^{5} (3j^2 - 2)$.</p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>Para $j=2: 3(2^2)-2 = 10$.</p>
+              <p>Para $j=3: 3(3^2)-2 = 25$.</p>
+              <p>Para $j=4: 3(4^2)-2 = 46$.</p>
+              <p>Para $j=5: 3(5^2)-2 = 73$.</p>
+              <p>Soma $= 10+25+46+73 = 154$.</p>
+              <p><strong>Resposta:</strong> 154.</p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1:</p>
+            <p>
+              Reescreva o somatório $\sum_{i=0}^{n-1} (2i+1)$ de forma que o
+              índice inferior seja 1.
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2:</p>
+            <p>
+              Calcule o valor do produtório $\prod_{k=1}^{5} \frac{k}{k+2}$.
+            </p>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Tabela: Fórmulas Comuns de Somatórios
+          </h3>
+          <div class="table-container">
+            <table
+              class="min-w-full bg-white border border-gray-300 rounded-md"
+            >
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="py-2 px-3 border-b">Tipo de Soma</th>
+                  <th class="py-2 px-3 border-b">Limites Comuns</th>
+                  <th class="py-2 px-3 border-b">Fórmula</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-3 border-b">Constante ($c$)</td>
+                  <td class="py-2 px-3 border-b">$k=1$ a $n$</td>
+                  <td class="py-2 px-3 border-b">$n \cdot c$</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Termos de PA ($a_1, r$)</td>
+                  <td class="py-2 px-3 border-b">$k=1$ a $n$</td>
+                  <td class="py-2 px-3 border-b">
+                    $\sum_{k=1}^n (a_1 + (k-1)r) = \frac{n(2a_1 + (n-1)r)}{2}$
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">$k$</td>
+                  <td class="py-2 px-3 border-b">$k=1$ a $n$</td>
+                  <td class="py-2 px-3 border-b">$\frac{n(n+1)}{2}$</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">$k^2$</td>
+                  <td class="py-2 px-3 border-b">$k=1$ a $n$</td>
+                  <td class="py-2 px-3 border-b">$\frac{n(n+1)(2n+1)}{6}$</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Termos de PG ($a, q$)</td>
+                  <td class="py-2 px-3 border-b">$k=0$ a $n-1$</td>
+                  <td class="py-2 px-3 border-b">
+                    $\sum_{k=0}^{n-1} aq^k = \frac{a(q^n-1)}{q-1}$, se $q \neq
+                    1$
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">
+                    Soma Telescópica $\sum (a_k - a_{k-1})$
+                  </td>
+                  <td class="py-2 px-3 border-b">$k=1$ a $n$</td>
+                  <td class="py-2 px-3 border-b">$a_n - a_0$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          id="proofs"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.4. Demonstração Matemática
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">
+            Conceitos e Terminologias Essenciais
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Demonstração:</strong> Argumento válido que estabelece a
+                verdade de uma sentença matemática[cite: 142]. Pode usar
+                hipóteses, axiomas e teoremas previamente demonstrados[cite:
+                142, 143]. Pode ser formal ou informal[cite: 143].
+              </li>
+              <li>
+                <strong>Teorema:</strong> Afirmação que foi provada
+                verdadeira[cite: 144]. Um teorema da forma $P \rightarrow Q$ (ou
+                $\forall x (P(x) \rightarrow Q(x))$) é estabelecido mostrando
+                que $Q$ é verdadeiro se $P$ é verdadeiro[cite: 150, 151].
+              </li>
+              <li>
+                <strong>Axioma (ou Postulado):</strong> Afirmação assumida como
+                verdadeira sem demonstração[cite: 143, 145].
+              </li>
+              <li>
+                <strong>Lema:</strong> Teorema "menor" usado para provar um
+                teorema maior[cite: 147].
+              </li>
+              <li>
+                <strong>Corolário:</strong> Teorema que segue diretamente de
+                outro já provado[cite: 148].
+              </li>
+              <li>
+                <strong>Conjectura:</strong> Afirmação proposta como verdadeira,
+                mas ainda não provada[cite: 144, 145].
+              </li>
+              <li>
+                <strong>Contraexemplo:</strong> Um valor específico do domínio
+                para o qual uma afirmação universal ($\forall x P(x)$) é falsa,
+                ou para o qual $P(x)$ é verdadeira mas $Q(x)$ é falsa em $P(x)
+                \rightarrow Q(x)$[cite: 154, 155]. Usado para refutar
+                conjecturas[cite: 163].
+              </li>
+            </ul>
+            <h4 class="text-md font-semibold mt-3 mb-1">
+              Tipos Comuns de Demonstração Matemática[cite: 172]:
+            </h4>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Demonstração por Exaustão:</strong> Verifica a afirmação
+                para todos os possíveis valores do domínio (aplicável a domínios
+                finitos pequenos)[cite: 173].
+              </li>
+              <li>
+                <strong>Demonstração Direta:</strong> Para provar $P \rightarrow
+                Q$, assume-se que $P$ é verdadeira e, através de uma sequência
+                lógica de passos dedutivos (usando definições, axiomas e
+                teoremas conhecidos), mostra-se que $Q$ também deve ser
+                verdadeira[cite: 177, 178].
+              </li>
+              <li>
+                <strong>Demonstração por Contraposição:</strong> Para provar $P
+                \rightarrow Q$, prova-se sua contrapositiva logicamente
+                equivalente $\neg Q \rightarrow \neg P$ usando uma demonstração
+                direta[cite: 180]. Assume-se $\neg Q$ e deduz-se $\neg P$.
+              </li>
+              <li>
+                <strong
+                  >Demonstração por Contradição (Redução ao Absurdo):</strong
+                >
+                Para provar $P \rightarrow Q$, assume-se a premissa $P$ e a
+                negação da conclusão $\neg Q$ (ou seja, $P \land \neg Q$) e
+                deriva-se uma contradição (uma proposição da forma $R \land \neg
+                R$, que é sempre falsa)[cite: 181]. Isso mostra que a suposição
+                $P \land \neg Q$ deve ser falsa, e portanto, se $P$ é
+                verdadeira, $\neg Q$ deve ser falsa, o que implica que $Q$ é
+                verdadeira.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=0Y3XSTHgzWo"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >DEMONSTRAÇÃO DIRETA, CONTRAPOSITIVA E POR CONTRADIÇÃO
+                (Professora Angela Matemática)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=jL3F4L2YgYc"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >MÉTODOS DE DEMONSTRAÇÃO MATEMÁTICA (UNIVESP)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Demonstração Direta):</p>
+            <p>
+              Prove que a soma de dois números inteiros pares é sempre um número
+              par.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Sejam $a, b$ pares. Então $a=2k_1, b=2k_2$ para $k_1, k_2 \in
+                \mathbb{Z}$.
+              </p>
+              <p>$a+b = 2k_1 + 2k_2 = 2(k_1+k_2)$.</p>
+              <p>Como $k_1+k_2 \in \mathbb{Z}$, $a+b$ é par.</p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1 (Contrapositiva):</p>
+            <p>
+              Prove que se $n$ é um inteiro e $n^3 + 5$ é ímpar, então $n$ é
+              par.
+            </p>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 2 (Contradição):</p>
+            <p>
+              Prove que não existe um número racional $x$ tal que $x^2 = 3$.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="induction"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.5. Indução Matemática
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Princípio da Indução Finita (PIF):</strong> Prova $P(n)$
+                para $n \geq n_0$.
+              </li>
+              <li>
+                <strong>Passos:</strong>
+                <ol class="list-decimal list-inside ml-4">
+                  <li><strong>Caso Base:</strong> Verificar $P(n_0)$.</li>
+                  <li>
+                    <strong>Hipótese Indutiva (HI):</strong> Assumir $P(k)$
+                    verdadeiro para $k \geq n_0$.
+                  </li>
+                  <li>
+                    <strong>Passo Indutivo:</strong> Usando HI, provar $P(k+1)$
+                    verdadeiro.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <strong>Aplicações:</strong> Fórmulas de somatórios (Q10 da P2),
+                divisibilidade, desigualdades.
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=jVqKlGLSgdY"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >PROVA POR INDUÇÃO MATEMÁTICA (COM EXERCÍCIO RESOLVIDO)
+                (Equaciona com Prof. Paulo Pereira)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Questão 10 da Prova P2):</p>
+            <p>
+              Verifique utilizando indução matemática se $\frac{1}{1 \cdot 2} +
+              \frac{1}{2 \cdot 3} + \dots + \frac{1}{n(n+1)} = \frac{n}{n+1}$,
+              para $\forall n \geq 1, n \in \mathbb{Z}$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Seja $P(n)$ a proposição $\sum_{i=1}^{n} \frac{1}{i(i+1)} =
+                \frac{n}{n+1}$.
+              </p>
+              <p>
+                1. <strong>Caso Base (n=1):</strong> LE = $\frac{1}{1(2)} =
+                \frac{1}{2}$. LD = $\frac{1}{1+1} = \frac{1}{2}$. $P(1)$ é V.
+              </p>
+              <p>
+                2. <strong>Hipótese Indutiva (HI):</strong> Assumir $P(k)$ V:
+                $\sum_{i=1}^{k} \frac{1}{i(i+1)} = \frac{k}{k+1}$ para $k \geq
+                1$.
+              </p>
+              <p>
+                3. <strong>Passo Indutivo (Provar P(k+1)):</strong> Queremos
+                provar $\sum_{i=1}^{k+1} \frac{1}{i(i+1)} = \frac{k+1}{k+2}$.
+              </p>
+              <p class="math">
+                LE de $P(k+1) = \sum_{i=1}^{k+1} \frac{1}{i(i+1)} =
+                \left(\sum_{i=1}^{k} \frac{1}{i(i+1)}\right) +
+                \frac{1}{(k+1)(k+2)}$
+              </p>
+              <p class="math">
+                $= \frac{k}{k+1} + \frac{1}{(k+1)(k+2)}$ (usando HI)
+              </p>
+              <p class="math">
+                $= \frac{k(k+2)+1}{(k+1)(k+2)} = \frac{k^2+2k+1}{(k+1)(k+2)} =
+                \frac{(k+1)^2}{(k+1)(k+2)} = \frac{k+1}{k+2}$.
+              </p>
+              <p>
+                Isto é o LD de $P(k+1)$. Portanto, $P(n)$ é V para $\forall n
+                \geq 1$.
+              </p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1 (Divisibilidade):</p>
+            <p>
+              Prove por indução que, para todo inteiro $n \geq 0$, $n^3 + 2n$ é
+              divisível por 3.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="relations"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">4.6. Relações</h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Fundamentais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Um <strong>par ordenado</strong> $(a,b)$ é um conjunto de dois
+              elementos onde a ordem é preservada; $(a,b) = (c,d)$ se e somente
+              se $a=c$ e $b=d$[cite: 75].
+            </p>
+            <p>
+              O <strong>Produto Cartesiano</strong> de dois conjuntos A e B,
+              denotado $A \times B$, é o conjunto de todos os pares ordenados
+              $(x,y)$ onde $x \in A$ e $y \in B$[cite: 76]. Ex: Se
+              $A=\{-4,-1,1,2\}$ e $B=\{-3,-1,3,4\}$, $A \times B$ contém pares
+              como $(-4,-3), (-4,-1), \dots, (2,4)$[cite: 77].
+            </p>
+            <p>
+              Uma <strong>Relação</strong> $R$ de um conjunto A para um conjunto
+              B ($R: A \rightarrow B$) é qualquer subconjunto do produto
+              cartesiano $A \times B$[cite: 81]. Se $A=B$, $R$ é uma relação
+              binária em $S$, sendo um subconjunto de $S \times S$ (ou
+              $S^2$)[cite: 88].
+            </p>
+            <p><strong>Representações de Relações:</strong></p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                Listagem de pares: Ex: $R = \{(1,3), (3,9), (5,15)\}$ para
+                $A=\{1,3,5\}, B=\{3,9,15,20\}$ e $b=3a$[cite: 84, 85].
+              </li>
+              <li>
+                Matricial (Algébrica): Para $R:A \rightarrow B$, uma matriz
+                $A_{n \times m}$ onde $a_{ij}=1$ se $(elemento_i \text{ de } A,
+                elemento_j \text{ de } B) \in R$, e $0$ caso contrário[cite: 98,
+                99].
+              </li>
+              <li>
+                Geométrica (Grafos/Dígrafos): Vértices representam elementos e
+                arestas direcionadas (setas) representam os pares ordenados da
+                relação[cite: 105, 106].
+              </li>
+            </ul>
+            <p>
+              <strong
+                >Domínio, Imagem e Contradomínio de uma Relação $R \subseteq A
+                \times B$:</strong
+              >
+            </p>
+            <ul class="list-disc list-inside ml-4">
+              <li>
+                <strong>Domínio ($D(R)$):</strong> Subconjunto de A formado
+                pelos primeiros elementos dos pares em R[cite: 111, 112].
+              </li>
+              <li>
+                <strong>Imagem ($Im(R)$):</strong> Subconjunto de B formado
+                pelos segundos elementos dos pares em R[cite: 111, 112].
+              </li>
+              <li>
+                <strong>Contradomínio ($CD(R)$):</strong> O conjunto B[cite:
+                111, 113].
+              </li>
+            </ul>
+            <p>
+              <strong>Composição de Relações:</strong> Se $R: A \rightarrow B$ e
+              $S: B \rightarrow C$, a composição $S \circ R: A \rightarrow C$ é
+              $\{(a,c) \mid \exists b \in B \text{ tal que } (a,b) \in R \land
+              (b,c) \in S\}$[cite: 114].
+            </p>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Propriedades e Tipos de Relações (em um conjunto A)
+          </h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <div class="table-container">
+              <table
+                class="min-w-full bg-white border border-gray-300 rounded-md"
+              >
+                <thead class="bg-gray-200">
+                  <tr>
+                    <th class="py-2 px-3 border-b">Propriedade</th>
+                    <th class="py-2 px-3 border-b">
+                      Definição Formal ($\forall a,b,c \in A$)
+                    </th>
+                    <th class="py-2 px-3 border-b">Verificação em Dígrafo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Reflexiva</td>
+                    <td>$(a,a) \in R$</td>
+                    <td>Todo vértice tem laço</td>
+                  </tr>
+                  <tr>
+                    <td>Irreflexiva</td>
+                    <td>$(a,a) \notin R$</td>
+                    <td>Nenhum vértice tem laço</td>
+                  </tr>
+                  <tr>
+                    <td>Simétrica</td>
+                    <td>Se $(a,b) \in R \Rightarrow (b,a) \in R$</td>
+                    <td>Se $a \to b \Rightarrow b \to a$</td>
+                  </tr>
+                  <tr>
+                    <td>Antissimétrica</td>
+                    <td>Se $(a,b) \in R \land (b,a) \in R \Rightarrow a=b$</td>
+                    <td>Não há setas $a \leftrightarrow b$ para $a \neq b$</td>
+                  </tr>
+                  <tr>
+                    <td>Assimétrica</td>
+                    <td>Se $(a,b) \in R \Rightarrow (b,a) \notin R$</td>
+                    <td>
+                      Se $a \to b$, então não existe $b \to a$ (implica
+                      irreflexiva)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Transitiva</td>
+                    <td>
+                      Se $(a,b) \in R \land (b,c) \in R \Rightarrow (a,c) \in R$
+                    </td>
+                    <td>Se $a \to b \to c \Rightarrow a \to c$ (atalho)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="list-disc list-inside mt-2">
+              <li>
+                <strong>Relação de Equivalência:</strong> Reflexiva, Simétrica E
+                Transitiva.
+              </li>
+              <li>
+                <strong>Relação de Ordem Parcial:</strong> Reflexiva,
+                Antissimétrica E Transitiva.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=3i7pY_78LhI"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >RELAÇÕES (REFLEXIVA, SIMÉTRICA, TRANSITIVA, ANTISSIMÉTRICA)
+                (Aulática)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=gU0EUYhF_uM"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >RELAÇÃO DE EQUIVALÊNCIA E CLASSES DE EQUIVALÊNCIA
+                (Equaciona)</a
+              >
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Similar à Q9 da P2):</p>
+            <p>
+              Seja $A = \{x, y, z\}$ e $R = \{(x,x), (x,y), (y,x), (y,y), (z,z),
+              (y,z), (z,y)\}$.
+            </p>
+            <p>
+              a) R é reflexiva? b) R é simétrica? c) R é transitiva? d) R é de
+              equivalência?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                a) <strong>Reflexiva:</strong> Sim. $(x,x),(y,y),(z,z) \in R$.
+              </p>
+              <p>
+                b) <strong>Simétrica:</strong> Sim. $(x,y) \in R \Rightarrow
+                (y,x) \in R$. $(y,z) \in R \Rightarrow (z,y) \in R$.
+              </p>
+              <p>
+                c) <strong>Transitiva:</strong> Não. Temos $(x,y) \in R$ e
+                $(y,z) \in R$. Para ser transitiva, $(x,z)$ deveria estar em R,
+                mas $(x,z) \notin R$.
+              </p>
+              <p>
+                d) <strong>Equivalência:</strong> Não, pois não é transitiva.
+              </p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md">
+            <p class="font-medium">Proposta 1 (Baseada na Q9 da P2):</p>
+            <p>
+              Considere a relação $R$ da Q9 da prova P2 (vértices 1,2,3). Pares:
+              $\{(1,1), (1,2), (1,3), (2,1), (2,2), (3,1), (3,3)\}$. Verifique
+              se $R$ é antissimétrica e se é de ordem parcial.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="functions"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">4.7. Funções</h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Definição:</strong> $f: A \rightarrow B$, para todo $a
+                \in A$, existe um único $b \in B$ tal que $f(a)=b$.
+              </li>
+              <li><strong>Domínio, Contradomínio, Imagem.</strong></li>
+              <li>
+                <strong>Tipos (Q3b, Q5 da P2):</strong>
+                <ul class="list-disc list-inside ml-4">
+                  <li>
+                    <strong>Injetora:</strong> $f(a_1)=f(a_2) \Rightarrow
+                    a_1=a_2$.
+                  </li>
+                  <li>
+                    <strong>Sobrejetora:</strong> $\forall b \in B, \exists a
+                    \in A, f(a)=b$. ($Im(f)=B$).
+                  </li>
+                  <li><strong>Bijetora:</strong> Injetora e Sobrejetora.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Função Composta (Q5 da P2):</strong> $(g \circ f)(x) =
+                g(f(x))$.
+              </li>
+              <li>
+                <strong>Função Inversa (Q5 da P2):</strong> $f^{-1}(y)=x \iff
+                f(x)=y$. Só existe se $f$ for bijetora.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=MyDJG1kFk8A"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >FUNÇÃO INJETORA, SOBREJETORA E BIJETORA (Matemática Rio)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=knsm2pvqj_A"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >FUNÇÃO COMPOSTA E FUNÇÃO INVERSA (Ferretto Matemática)</a
+              >
+            </li>
+          </ul>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Similar à Q5 da P2):</p>
+            <p>$f(x) = 3x - 2$, $g(x) = \frac{x+2}{3}$.</p>
+            <p>
+              a) $f$ é injetora? b) $f$ é sobrejetora? c) $f$ é bijetora? d) $(g
+              \circ f)(x)$? e) Conclusão sobre $g, f$?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                a) <strong>Injetora:</strong> Sim. $3a-2=3b-2 \Rightarrow a=b$.
+              </p>
+              <p>
+                b) <strong>Sobrejetora:</strong> Sim. Para $y \in \mathbb{R}$,
+                $x = \frac{y+2}{3} \in \mathbb{R}$ e $f(x)=y$.
+              </p>
+              <p>c) <strong>Bijetora:</strong> Sim.</p>
+              <p>d) $(g \circ f)(x) = g(3x-2) = \frac{(3x-2)+2}{3} = x$.</p>
+              <p>
+                e) $g = f^{-1}$ pois $(g \circ f)(x) = x$ (e $(f \circ g)(x)=x$
+                também).
+              </p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Tabela: Tipos de Funções
+          </h3>
+          <div class="overflow-x-auto">
+            <table
+              class="min-w-full bg-white border border-gray-300 rounded-md"
+            >
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="py-2 px-3 border-b">Tipo</th>
+                  <th class="py-2 px-3 border-b">Definição Formal</th>
+                  <th class="py-2 px-3 border-b">
+                    Implicação $|A|,|B|$ (finitos)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-3 border-b">Injetora</td>
+                  <td class="py-2 px-3 border-b math">
+                    $f(x_1)=f(x_2) \Rightarrow x_1=x_2$
+                  </td>
+                  <td class="py-2 px-3 border-b math">$|A| \leq |B|$</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Sobrejetora</td>
+                  <td class="py-2 px-3 border-b math">
+                    $\forall y \in B, \exists x \in A, f(x)=y$
+                  </td>
+                  <td class="py-2 px-3 border-b math">$|A| \geq |B|$</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Bijetora</td>
+                  <td class="py-2 px-3 border-b">Injetora e Sobrejetora</td>
+                  <td class="py-2 px-3 border-b math">$|A| = |B|$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          id="counting_principles"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.8. Contagem - Princípios Fundamentais
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Princípio Aditivo (Regra da Soma):</strong> Se A e B são
+                mutuamente exclusivos, A OU B é $m+n$ maneiras.
+              </li>
+              <li>
+                <strong>Princípio Multiplicativo (Regra do Produto):</strong> Se
+                procedimento tem 2 etapas (m e n maneiras), total é $m \cdot n$
+                maneiras.
+              </li>
+              <li>
+                <strong>Diagrama de Árvore:</strong> Representação visual.
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=ciGkPAGHkG8"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >PRINCÍPIO FUNDAMENTAL DA CONTAGEM (Aditivo e Multiplicativo)
+                (Prof. Angela)</a
+              >
+            </li>
+          </ul>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida:</p>
+            <p>
+              Lanchonete: 3 pães, 4 recheios, 2 molhos. Quantos sanduíches (1
+              pão, 1 recheio, 1 molho)?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Pelo Princípio Multiplicativo: $3 \cdot 4 \cdot 2 = 24$
+                sanduíches.
+              </p>
+              <p><strong>Resposta:</strong> 24.</p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="counting_pac"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.9. Contagem: Permutações, Arranjos e Combinações
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">Conceitos Essenciais</h3>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          >
+            Mostrar/Ocultar Detalhes
+          </button>
+          <div class="collapsible-content space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Fatorial:</strong> $n! = n \cdot (n-1) \cdot \dots \cdot
+                1$. $0!=1$.
+              </li>
+              <li>
+                <strong>Permutação Simples ($P_n$):</strong> Ordenar $n$ objetos
+                distintos. $P_n = n!$. Ordem importa, todos usados.
+              </li>
+              <li>
+                <strong>Arranjo Simples ($A_{n,p}$):</strong> Escolher $p$ de
+                $n$ distintos e ordenar. $A_{n,p} = \frac{n!}{(n-p)!}$. Ordem
+                importa. (Q2, Q7 da P2)
+              </li>
+              <li>
+                <strong>Combinação Simples ($C_{n,p}$):</strong> Escolher $p$ de
+                $n$ distintos, ordem não importa. $C_{n,p} =
+                \frac{n!}{p!(n-p)!}$. (Q1 da P2)
+              </li>
+              <li>
+                <strong>Permutação com Repetição:</strong> $\frac{n!}{n_1! n_2!
+                \dots n_k!}$. (Q4 da P2 - se houvesse letras repetidas)
+              </li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Vídeos Recomendados</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=Gk2nAnk-_b0"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >ARRANJO, PERMUTAÇÃO E COMBINAÇÃO (Aula Completa) (Equaciona)</a
+              >
+            </li>
+          </ul>
+          <h3 class="text-xl font-semibold mt-4 mb-2">Questões Práticas</h3>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Similar à Q1 da P2):</p>
+            <p>
+              Adega: 5 vinhos tintos, 4 brancos. Escolher 2 tintos e 1 branco.
+              De quantas maneiras?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Escolha dos tintos (ordem não importa): $C_{5,2} =
+                \frac{5!}{2!3!} = 10$.
+              </p>
+              <p>
+                Escolha do branco (ordem não importa): $C_{4,1} =
+                \frac{4!}{1!3!} = 4$.
+              </p>
+              <p>Total: $10 \cdot 4 = 40$ maneiras.</p>
+              <p><strong>Resposta:</strong> 40.</p>
+            </div>
+          </div>
+          <div class="mb-3 border p-3 rounded-md bg-gray-50">
+            <p class="font-medium">Resolvida (Similar à Q2 da P2):</p>
+            <p>
+              Quantos números de 4 algarismos distintos podem ser formados com
+              {0,1,2,3,4,5} que sejam pares?
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar/Ocultar Solução
+            </button>
+            <div class="solution mt-2">
+              <p>
+                Caso 1 (termina em 0): _ _ _ 0. $5 \cdot 4 \cdot 3 \cdot 1 =
+                60$.
+              </p>
+              <p>
+                Caso 2 (termina em 2): _ _ _ 2. Primeiro não pode ser 0. $4
+                \cdot 4 \cdot 3 \cdot 1 = 48$.
+              </p>
+              <p>
+                Caso 3 (termina em 4): _ _ _ 4. Primeiro não pode ser 0. $4
+                \cdot 4 \cdot 3 \cdot 1 = 48$.
+              </p>
+              <p>Total: $60+48+48 = 156$.</p>
+              <p><strong>Resposta:</strong> 156.</p>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Tabela: Comparativo P/A/C
+          </h3>
+          <div class="overflow-x-auto">
+            <table
+              class="min-w-full bg-white border border-gray-300 rounded-md"
+            >
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="py-2 px-3 border-b">Técnica</th>
+                  <th class="py-2 px-3 border-b">Fórmula</th>
+                  <th class="py-2 px-3 border-b">Ordem Importa?</th>
+                  <th class="py-2 px-3 border-b">Usa Todos?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-3 border-b">Permutação</td>
+                  <td class="py-2 px-3 border-b math">$P_n = n!$</td>
+                  <td class="py-2 px-3 border-b">Sim</td>
+                  <td class="py-2 px-3 border-b">Sim</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Arranjo</td>
+                  <td class="py-2 px-3 border-b math">
+                    $A_{n,p} = \frac{n!}{(n-p)!}$
+                  </td>
+                  <td class="py-2 px-3 border-b">Sim</td>
+                  <td class="py-2 px-3 border-b">Não ($p \leq n$)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">Combinação</td>
+                  <td class="py-2 px-3 border-b math">
+                    $C_{n,p} = \frac{n!}{p!(n-p)!}$
+                  </td>
+                  <td class="py-2 px-3 border-b">Não</td>
+                  <td class="py-2 px-3 border-b">Não ($p \leq n$)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          id="exam_strategies"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            5. Estratégias para a Resolução da Prova
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">
+            Interpretação de Enunciados
+          </h3>
+          <p>
+            Leia atentamente, identifique palavras-chave. Em contagem: ordem
+            importa? repetição? Em conjuntos: Diagramas de Venn. Em lógica:
+            premissas, conclusão, conectivos.
+          </p>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Gerenciamento do Tempo
+          </h3>
+          <p>
+            Olhada rápida em todas as questões. Aloque tempo. Comece pelas mais
+            confiantes. Não "emperre".
+          </p>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Como Apresentar as Justificativas
+          </h3>
+          <p>
+            Clareza, concisão, rigor lógico. Baseie-se em definições. Para
+            provar validade, cubra casos ou use argumento geral. Para invalidar,
+            um contraexemplo.
+          </p>
+        </section>
+
+        <section
+          id="final_remarks"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            6. Considerações Finais
+          </h2>
+          <h3 class="text-xl font-semibold mb-2">
+            Recomendações para os Últimos Dias
+          </h3>
+          <p>
+            Consolide o conhecimento. Refaça provas e exercícios. Revise
+            definições e fórmulas. Durma bem.
+          </p>
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Mensagem de Encorajamento
+          </h3>
+          <p>
+            Matemática Discreta é fundamental. Com dedicação e estudo focado,
+            você está no caminho certo. Boa prova! 🚀
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/charts.js" defer></script>
+  </body>
+</html>

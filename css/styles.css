@@ -1,0 +1,66 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5f0; /* Bege muito suave */
+}
+.content-section {
+  display: none; /* Seções de conteúdo são ocultas por padrão */
+}
+.content-section.active {
+  display: block; /* Apenas a seção ativa é exibida */
+}
+.sidebar-link.active {
+  background-color: #607d8b;
+  color: white;
+}
+.solution,
+.collapsible-content {
+  display: none;
+}
+.solution.active,
+.collapsible-content.active {
+  display: block;
+}
+.solution {
+  border-left: 3px solid #8fbc8f;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  background-color: #f0f8f0;
+}
+.collapsible-content {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  background-color: #fafafa;
+  border-left: 3px solid #ccc;
+}
+.section-title {
+  color: #37474f;
+  border-bottom: 2px solid #8fbc8f;
+  padding-bottom: 0.5rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 0.9rem;
+}
+th,
+td {
+  border: 1px solid #cbd5e0;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: middle;
+}
+th {
+  background-color: #e2e8f0;
+}
+td .MathJax {
+  /* Para MathJax dentro de tabelas */
+  display: inline-block !important;
+  margin: 0.2em 0;
+}
+.table-container {
+  /* Para tabelas muito largas */
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
