@@ -1,6 +1,6 @@
 # Discrete-Mathemagıc
 
-**Discrete-Mathemagic** é um site de estudo voltado para a disciplina de Matemática Discreta e Lógica, utilizando provas de referência da UnB (Engenharia de Software) como base para organização de conceitos, exemplos e exercícios.
+**Discrete-Mathemagic** é um site de estudo voltado para a disciplina de Matemática Discreta, utilizando provas de referência da UnB (Engenharia de Software) como base para organização de conceitos, exemplos e exercícios.
 
 ---
 
@@ -100,11 +100,5 @@ Discrete-Mathemagıc/
 
 ---
 
-## 📄 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-
-> Desenvolvido com ❤️ por [Seu Nome]  
-> Para dúvidas, sugestões ou feedback, abra uma issue ou envie um e-mail para seu.email@dominio.com.
+> Desenvolvido com ❤️ por Pedro Henrique Pereira Santos  
+> Para dúvidas, sugestões ou feedback, abra uma issue ou envie um e-mail para phps2014.phps@gmail.com.
