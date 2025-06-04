@@ -28,10 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (mainContent) {
-      mainContent.scrollTop = 0; // Rolagem para o topo do conteúdo principal
+      mainContent.scrollTop = 0;
     }
-    document.documentElement.scrollTop = 0; // Rolagem para o topo da página
-    // Atualiza o hash na URL sem causar um salto na página se já estiver correto
+    document.documentElement.scrollTop = 0;
     if (targetId && window.location.hash !== "#" + targetId) {
       window.location.hash = targetId;
     }
@@ -42,9 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const targetId = e.currentTarget.dataset.target;
       setActiveSection(targetId);
-      // Esconde a sidebar em modo mobile após clicar em um link
       if (
-        window.innerWidth < 768 && // md breakpoint de Tailwind
+        window.innerWidth < 768 &&
         sidebar &&
         !sidebar.classList.contains("-translate-x-full")
       ) {
@@ -53,22 +51,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Define a seção ativa inicial baseada no hash da URL ou padrão 'intro'
-  let initialTarget = "intro"; // Seção padrão
+  let initialTarget = "intro";
   if (window.location.hash) {
-    const hashTarget = window.location.hash.substring(1); // Remove o '#'
+    const hashTarget = window.location.hash.substring(1);
     if (document.getElementById(hashTarget)) {
       initialTarget = hashTarget;
     }
   }
   setActiveSection(initialTarget);
 
-  // Lógica para botões "collapsible" e "solution"
   document
     .querySelectorAll(".solution-trigger, .collapsible-trigger")
     .forEach((button) => {
       button.addEventListener("click", function () {
-        const contentDiv = this.nextElementSibling; // O conteúdo a ser mostrado/ocultado
+        const contentDiv = this.nextElementSibling;
         if (contentDiv) {
           contentDiv.classList.toggle("active");
           const isActive = contentDiv.classList.contains("active");
@@ -77,11 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
           if (this.classList.contains("solution-trigger")) {
             buttonText = isActive ? "Ocultar Solução" : "Mostrar Solução";
           } else if (this.classList.contains("collapsible-trigger")) {
-            // Tenta obter o texto original do atributo data, ou do texto atual do botão
             const originalText =
               this.dataset.originalText ||
-              this.textContent.replace(/Mostrar |Ocultar /g, ""); // Remove prefixos
-            this.dataset.originalText = originalText; // Armazena para uso futuro
+              this.textContent.replace(/Mostrar |Ocultar /g, "");
+            this.dataset.originalText = originalText;
 
             buttonText = isActive
               ? `Ocultar ${originalText}`

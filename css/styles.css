@@ -1,12 +1,12 @@
 body {
   font-family: "Inter", sans-serif;
-  background-color: #f5f5f0; /* Bege muito suave */
+  background-color: #f5f5f0;
 }
 .content-section {
-  display: none; /* Seções de conteúdo são ocultas por padrão */
+  display: none;
 }
 .content-section.active {
-  display: block; /* Apenas a seção ativa é exibida */
+  display: block;
 }
 .sidebar-link.active {
   background-color: #607d8b;
@@ -55,12 +55,10 @@ th {
   background-color: #e2e8f0;
 }
 td .MathJax {
-  /* Para MathJax dentro de tabelas */
   display: inline-block !important;
   margin: 0.2em 0;
 }
 .table-container {
-  /* Para tabelas muito largas */
   overflow-x: auto;
   margin-bottom: 1rem;
 }

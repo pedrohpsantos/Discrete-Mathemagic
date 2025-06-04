@@ -1,7 +1,6 @@
 window.addEventListener("load", () => {
-  // Opções comuns para os gráficos
   const commonChartOptions = {
-    indexAxis: "y", // Barras horizontais
+    indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -9,14 +8,14 @@ window.addEventListener("load", () => {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Pontos", // Rótulo do eixo X
+          text: "Pontos",
         },
       },
       y: {
         ticks: {
-          autoSkip: false, // Garante que todos os rótulos do eixo Y sejam mostrados
+          autoSkip: false,
           font: {
-            size: 10, // Ajusta o tamanho da fonte para melhor encaixe
+            size: 10,
           },
         },
       },
@@ -43,11 +42,10 @@ window.addEventListener("load", () => {
     },
   };
 
-  // Gráfico para P1
   const ctxP1 = document.getElementById("examTopicsChartP1");
   if (ctxP1) {
     new Chart(ctxP1, {
-      type: "bar", // Tipo de gráfico de barras
+      type: "bar",
       data: {
         labels: [
           "Proposições/Conectivos",
@@ -60,8 +58,8 @@ window.addEventListener("load", () => {
         datasets: [
           {
             label: "Pontos Estimados na P1",
-            data: [2.0, 2.0, 1.5, 2.0, 1.5, 1.0], // Dados de exemplo
-            backgroundColor: "rgba(54, 162, 235, 0.7)", // Cor azul
+            data: [2.0, 2.0, 1.5, 2.0, 1.5, 1.0],
+            backgroundColor: "rgba(54, 162, 235, 0.7)",
             borderColor: "rgba(54, 162, 235, 1)",
             borderWidth: 1,
           },
@@ -87,8 +85,8 @@ window.addEventListener("load", () => {
         datasets: [
           {
             label: "Pontos Estimados na P2",
-            data: [3.9, 1.5, 1.8, 1.8, 1.0], // Dados de exemplo
-            backgroundColor: "rgba(75, 192, 192, 0.7)", // Cor verde-água
+            data: [3.9, 1.5, 1.8, 1.8, 1.0],
+            backgroundColor: "rgba(75, 192, 192, 0.7)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
           },
