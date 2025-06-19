@@ -74,7 +74,7 @@
             <p
               class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-3 pb-1"
             >
-              Lógica Matemática (P1)
+              Lógica Matemática
             </p>
             <a
               href="#logic_propositions"
@@ -130,7 +130,7 @@
             <p
               class="text-sm text-gray-400 uppercase tracking-wider px-4 pt-3 pb-1"
             >
-              Demonstração Matemática (P2)
+              Demonstração Matemática
             </p>
             <a
               href="#sets"
@@ -185,6 +185,18 @@
               data-target="counting_pac"
               class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200"
               >Contagem: P/A/C</a
+            >
+            <a
+              href="#recurrence_relations"
+              data-target="recurrence_relations"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200 font-bold"
+              >Relações de Recorrência</a
+            >
+            <a
+              href="#advanced_counting"
+              data-target="advanced_counting"
+              class="sidebar-link block py-2 px-4 rounded hover:bg-[#607d8b] hover:text-white transition-colors duration-200 font-bold"
+              >Contagem Avançada (Funções Geradoras)</a
             >
           </div>
 
@@ -332,98 +344,53 @@
             Análise da Prova de Referência (P1 - Lógica Matemática)
           </h3>
           <p class="mb-3">
-            A prova P1 geralmente foca nos fundamentos da lógica proposicional e
-            de predicados. A distribuição de pontos e o tipo de questão podem
-            variar, mas alguns tópicos são recorrentes. Veja abaixo um exemplo
-            de distribuição de pontos:
+            A P1 foca nos fundamentos da lógica proposicional e de predicados. A
+            cobrança se concentra em traduções, tabelas-verdade, equivalências e
+            validade de argumentos.
           </p>
           <div
             class="chart-container w-full max-w-2xl mx-auto mb-6 h-72 md:h-96"
           >
             <canvas id="examTopicsChartP1"></canvas>
           </div>
-          <p class="mb-3">Espere questões que envolvam:</p>
-          <ul class="list-disc list-inside space-y-1 mb-3">
-            <li>Tradução entre linguagem natural e simbologia lógica.</li>
-            <li>Construção e interpretação de tabelas verdade.</li>
-            <li>
-              Aplicação de equivalências lógicas para simplificar proposições.
-            </li>
-            <li>
-              Verificação da validade de argumentos usando regras de inferência
-              ou tabelas verdade.
-            </li>
-            <li>
-              Trabalho com sentenças abertas, quantificadores e negação de
-              proposições quantificadas.
-            </li>
-          </ul>
+
           <hr class="my-8 border-gray-300" />
+
+          <!-- ANÁLISE P2 -->
           <h3 class="text-xl font-semibold mb-2">
-            Análise da Prova de Referência (P2 - Demonstração Matemática)
+            Análise da Prova de Referência (P2 - Demonstração e Contagem Básica)
           </h3>
           <p class="mb-3">
-            Uma análise criteriosa da Avaliação P2 (Eng. Software UnB - Profª
-            Cristiane Loesch de Souza Costa) permite extrair informações
-            valiosas sobre o nível de exigência e o formato das questões.
+            A P2 avalia a aplicação de conceitos de conjuntos, funções, relações
+            e, principalmente, as técnicas de contagem direta como Permutação,
+            Arranjo e Combinação (P/A/C).
           </p>
           <div
             class="chart-container w-full max-w-2xl mx-auto mb-6 h-72 md:h-96"
           >
             <canvas id="examTopicsChartP2"></canvas>
           </div>
-          <p class="text-sm text-center text-gray-600 mb-6">
-            Gráfico: Exemplo de Distribuição de Pontos por Tópico na Prova P2.
-          </p>
-          <h4 class="text-lg font-semibold mb-2">
-            Visão Geral do Nível de Dificuldade e Tipos de Questão (P2 - Exemplo
-            Histórico):
-          </h4>
+
+          <hr class="my-8 border-gray-300" />
+
+          <!-- ANÁLISE P3 -->
+          <h3 class="text-xl font-semibold mb-2">
+            Análise da Prova de Referência (P3 - Tópicos Avançados de Contagem)
+          </h3>
           <p class="mb-3">
-            A prova P2 (exemplo histórico) demonstrou um equilíbrio entre
-            questões de múltipla escolha e discursivas. O nível de dificuldade é
-            consistente com o esperado para a disciplina, requerendo aplicação
-            de fórmulas, compreensão profunda dos conceitos e habilidade de
-            modelar problemas.
+            A avaliação final (ou P3) foca em problemas de contagem complexos
+            que exigem ferramentas mais sofisticadas. Os tópicos centrais são
+            <strong>Relações de Recorrência</strong> e
+            <strong>Funções Geradoras</strong>.
           </p>
-          <h4 class="text-lg font-semibold mb-2">
-            Discussão dos Tipos de Problemas e Conceitos Avaliados (P2 - Exemplo
-            Histórico):
-          </h4>
-          <ul class="list-disc list-inside space-y-1 mb-3">
-            <li>Contagem (Combinatória)</li>
-            <li>Funções/Teoria dos Conjuntos</li>
-            <li>Relações</li>
-            <li>Teoria dos Conjuntos (Inclusão-Exclusão)</li>
-            <li>Indução Matemática</li>
-          </ul>
-          <h4 class="text-lg font-semibold mb-2">
-            Implicações da Análise da Prova (P2) para o Estudo:
-          </h4>
-          <button
-            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+          <div
+            class="chart-container w-full max-w-2xl mx-auto mb-6 h-72 md:h-96"
           >
-            Mostrar Detalhes da Análise P2
-          </button>
-          <div class="collapsible-content space-y-2">
-            <p>
-              A prova P2 (exemplo) revelou ênfase na
-              <strong>modelagem e interpretação</strong>. Questões como
-              queijos/vinhos ou redes sociais exigem tradução para linguagem
-              matemática antes da aplicação de fórmulas.
-            </p>
-            <p>
-              Outro ponto é a necessidade de
-              <strong>justificativas claras e rigorosas</strong>, como na
-              questão de Relações que pedia justificativa para *todas* as
-              propriedades.
-            </p>
-            <p>
-              Finalmente, a prova demonstra a
-              <strong>interconexão entre tópicos</strong>, como Teoria dos
-              Conjuntos e Funções.
-            </p>
+            <canvas id="examTopicsChartP3"></canvas>
           </div>
+          <p class="text-sm text-center text-gray-600 mb-6">
+            Gráfico: Exemplo de Distribuição de Pontos por Tópico na Prova P3.
+          </p>
         </section>
 
         <section
@@ -1211,11 +1178,11 @@
                 válido se a condicional formada pela conjunção das premissas
                 como antecedente e a conclusão como consequente, ou seja, $(P_1
                 \land P_2 \land \dots \land P_n) \rightarrow Q$, é uma
-                tautologia. Um critério fundamental é que, em um
-                argumento válido, é impossível que as premissas sejam
-                verdadeiras e a conclusão seja falsa. A validade de um argumento
-                depende exclusivamente de sua forma lógica, e não do conteúdo ou
-                da veracidade individual das proposições que o compõem.
+                tautologia. Um critério fundamental é que, em um argumento
+                válido, é impossível que as premissas sejam verdadeiras e a
+                conclusão seja falsa. A validade de um argumento depende
+                exclusivamente de sua forma lógica, e não do conteúdo ou da
+                veracidade individual das proposições que o compõem.
               </li>
               <li>
                 <strong>Falácia ou Sofisma:</strong> Um argumento que não é
@@ -3256,7 +3223,323 @@
             </table>
           </div>
         </section>
+        <section
+          id="recurrence_relations"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.10. Relações de Recorrência: A Abordagem Completa
+          </h2>
+          <p class="mb-3">
+            Relações de recorrência descrevem um problema de tamanho $n$ em
+            termos de instâncias menores. Elas são a linguagem natural para
+            processos que evoluem passo a passo. A meta é encontrar uma "fórmula
+            fechada" que permita calcular qualquer termo da sequência
+            diretamente, sem iteração.
+          </p>
 
+          <div class="mb-4 border-l-4 border-blue-300 pl-4">
+            <p><strong>Definições-Chave:</strong></p>
+            <ul class="list-disc list-inside ml-2">
+              <li>
+                <strong>Ordem:</strong> A ordem de uma recorrência é a diferença
+                entre o maior e o menor índice. $a_n = f(a_{n-1}, a_{n-2})$ é de
+                2ª ordem.
+              </li>
+              <li>
+                <strong>Linearidade:</strong> Uma recorrência é linear se os
+                termos $a_i$ aparecem apenas na primeira potência e não são
+                multiplicados entre si. $a_n = 2a_{n-1} + a_{n-2}$ é linear.
+                $a_n = (a_{n-1})^2$ ou $a_n = a_{n-1} \cdot a_{n-2}$ não são.
+              </li>
+              <li>
+                <strong>Homogeneidade:</strong> É homogênea se, após isolar
+                todos os termos $a_i$ de um lado, o outro lado é zero. Caso
+                contrário, é não-homogênea e possui um termo $F(n)$.
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Resolvendo Recorrências Lineares Homogêneas
+          </h3>
+          <p class="mb-3">
+            Para recorrências da forma $a_n = p_1 a_{n-1} + \dots + p_k
+            a_{n-k}$, o método da equação característica é a chave. A forma da
+            solução geral depende da natureza das raízes da equação $r^k - p_1
+            r^{k-1} - \dots - p_k = 0$.
+          </p>
+
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Caso 1: Raízes Reais e Distintas"
+          >
+            Mostrar Caso 1: Raízes Reais e Distintas ($r_1 \neq r_2$)
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Se as raízes $r_1, r_2, \dots, r_k$ são distintas, a solução geral
+              é: $a_n = c_1 (r_1)^n + c_2 (r_2)^n + \dots + c_k (r_k)^n$
+            </p>
+          </div>
+
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2 mt-2"
+            data-original-text="Caso 2: Raízes Reais Repetidas"
+          >
+            Mostrar Caso 2: Raízes Reais Repetidas
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Se uma raiz $r_0$ tem multiplicidade $m$, ela contribui com $m$
+              termos para a solução geral:
+            </p>
+            <p class="math">
+              $$a_n^{(r_0)} = (c_1 + c_2 n + c_3 n^2 + \dots + c_m n^{m-1})
+              (r_0)^n$$
+            </p>
+          </div>
+
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2 mt-2"
+            data-original-text="Caso 3: Raízes Complexas Conjugadas"
+          >
+            Mostrar Caso 3: Raízes Complexas Conjugadas ($r = \alpha \pm
+            i\beta$)
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Se as raízes são complexas, elas aparecerão como um par conjugado
+              $r = \alpha \pm i\beta$. A solução é escrita de forma mais prática
+              usando a forma polar. Convertendo $r$ para $R(\cos\theta +
+              i\sin\theta)$, onde $R = \sqrt{\alpha^2 + \beta^2}$ e $\theta =
+              \arctan(\beta/\alpha)$, a solução geral real é:
+            </p>
+            <p class="math">
+              $$a_n = R^n (c_1 \cos(n\theta) + c_2 \sin(n\theta))$$
+            </p>
+          </div>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            Resolvendo Recorrências Não Homogêneas
+          </h3>
+          <p class="mb-3">
+            Uma recorrência não homogênea $a_n - p_1 a_{n-1} - \dots = F(n)$ tem
+            uma solução geral que é a soma de duas partes: $$a_n = a_n^{(h)} +
+            a_n^{(p)}$$ Onde $a_n^{(h)}$ é a solução da parte homogênea e
+            $a_n^{(p)}$ é uma solução particular que "imita" a forma de $F(n)$.
+          </p>
+          <div class="table-container my-4">
+            <h4 class="text-md font-semibold mb-2">
+              Guia para Escolher a Solução Particular $a_n^{(p)}$
+            </h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Se $F(n)$ é...</th>
+                  <th>Forma da Solução Particular $a_n^{(p)}$</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Polinômio de grau $d$</td>
+                  <td>Polinômio de grau $d$: $K_d n^d + \dots + K_0$</td>
+                </tr>
+                <tr>
+                  <td>Exponencial $C \cdot s^n$</td>
+                  <td>Exponencial $K \cdot s^n$</td>
+                </tr>
+                <tr>
+                  <td>(Polinômio) $\times$ (Exponencial)</td>
+                  <td>(Polinômio de mesmo grau) $\times$ (Exponencial)</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <strong>Regra de Modificação:</strong> Se a forma de $F(n)$
+                    (ou parte dela) já é uma solução de $a_n^{(h)}$ (i.e., $s$ é
+                    uma raiz da equação característica com multiplicidade $m$),
+                    multiplique a forma da solução particular por $n^m$.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section
+          id="advanced_counting"
+          class="content-section bg-white p-6 rounded-lg shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-4 section-title">
+            4.11. Tópicos Avançados de Contagem
+          </h2>
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            1. Funções Geradoras: A Conexão com a Álgebra
+          </h3>
+          <p class="mb-3">
+            As funções geradoras são o elo entre a combinatória e a álgebra.
+            Elas transformam problemas de seleção e arranjo em manipulações de
+            polinômios e séries de potências.
+          </p>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2"
+            data-original-text="Funções Geradoras Ordinárias (FGOs)"
+          >
+            Mostrar FGOs: Para Combinações (Ordem Não Importa)
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              A FGO $G(x) = \sum a_n x^n$ é ideal para problemas de seleção. A
+              identidade mais poderosa é o **Teorema Binomial Generalizado**,
+              que nos dá a FGO para o número de maneiras de escolher $n$ objetos
+              de $k$ tipos com repetição ilimitada:
+            </p>
+            <p class="math">
+              $$\frac{1}{(1-x)^k} = \sum_{n=0}^{\infty} \binom{n+k-1}{n} x^n$$
+            </p>
+            <p>
+              Isto prova que a fórmula de "Bolas e Barras" é um coeficiente em
+              uma série de potências.
+            </p>
+          </div>
+          <button
+            class="collapsible-trigger bg-[#607d8b] text-white px-3 py-1.5 rounded-md hover:bg-[#546e7a] text-sm mb-2 mt-2"
+            data-original-text="Funções Geradoras Exponenciais (FGEs)"
+          >
+            Mostrar FGEs: Para Permutações (Ordem Importa)
+          </button>
+          <div class="collapsible-content space-y-2">
+            <p>
+              Quando a ordem importa, usamos FGEs: $G_{exp}(x) = \sum a_n
+              \frac{x^n}{n!}$. Elas são usadas para problemas de arranjos, onde
+              $a_n$ conta o número de maneiras de ordenar $n$ objetos com certas
+              restrições de repetição.
+            </p>
+            <div class="mb-3 border p-3 rounded-md bg-gray-50 mt-2">
+              <p class="font-medium">Exemplo de FGE:</p>
+              <p>
+                De quantas maneiras podemos formar uma palavra de 3 letras
+                usando as letras de "CASA", onde 'A' pode ser usado no máximo 2
+                vezes, 'C' no máximo 1 vez, e 'S' no máximo 1 vez?
+              </p>
+              <button
+                class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+              >
+                Mostrar Solução com FGE
+              </button>
+              <div class="solution mt-2 space-y-2">
+                <p>
+                  1. <strong>Fatores da FGE:</strong> 'A' $\to (1 + \frac{x}{1!}
+                  + \frac{x^2}{2!})$, 'C' $\to (1+x)$, 'S' $\to (1+x)$.
+                </p>
+                <p>
+                  2. <strong>Produto:</strong> $G_{exp}(x) =
+                  (1+x+\frac{x^2}{2})(1+x)^2 = 1 + 3x + \frac{7}{2}x^2 + 2x^3 +
+                  \dots$
+                </p>
+                <p>
+                  3. <strong>Extrair a resposta:</strong> O termo com $x^3$ é
+                  $2x^3$. O número de permutações é o coeficiente de
+                  $\frac{x^3}{3!}$, que é $a_3$. Temos $a_3 \frac{x^3}{3!} =
+                  2x^3 \implies a_3 = 2 \cdot 3! = 12$.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-8 border-gray-300" />
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            2. O Princípio da Inclusão-Exclusão (PIE)
+          </h3>
+          <p class="mb-3">
+            O PIE é uma técnica de contagem fundamental para lidar com conjuntos
+            que se sobrepõem. Ele generaliza a regra da soma para cenários onde
+            as condições não são mutuamente exclusivas. Para encontrar o tamanho
+            da união de vários conjuntos, somamos os tamanhos individuais,
+            subtraímos as interseções de todos os pares, somamos as interseções
+            de todos os trios, e assim por diante.
+          </p>
+          <p class="font-semibold">Fórmula para 3 Conjuntos:</p>
+          <p class="math">
+            $$|A \cup B \cup C| = |A| + |B| + |C| - (|A \cap B| + |A \cap C| +
+            |B \cap C|) + |A \cap B \cap C|$$
+          </p>
+          <p class="mb-3">
+            Em problemas de contagem, o PIE é frequentemente usado em sua forma
+            complementar para contar o número de elementos que não possuem
+            nenhuma de várias propriedades.
+          </p>
+
+          <div class="mb-3 border p-3 rounded-md bg-gray-50 mt-2">
+            <p class="font-medium">
+              Exemplo de PIE: Permutações Caóticas (Desarranjos)
+            </p>
+            <p>
+              De quantas maneiras as cartas de 4 naipes distintos podem ser
+              colocadas em 4 envelopes (um para cada naipe) de modo que nenhuma
+              carta vá para o envelope correto? O número de desarranjos de $n$
+              objetos é $D_n$.
+            </p>
+            <button
+              class="solution-trigger bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm mt-1"
+            >
+              Mostrar Solução com PIE
+            </button>
+            <div class="solution mt-2 space-y-2">
+              <p>
+                1. <strong>Universo:</strong> O total de permutações é $4! =
+                24$.
+              </p>
+              <p>
+                2. <strong>Propriedades a Evitar:</strong> Seja $P_i$ a
+                propriedade de que a carta $i$ está no envelope correto.
+              </p>
+              <p>
+                3. <strong>Aplicar PIE:</strong> Queremos $N(P_1' P_2' P_3'
+                P_4') = N - |P_1 \cup P_2 \cup P_3 \cup P_4|$.
+              </p>
+              <ul class="list-disc list-inside ml-4">
+                <li>
+                  $|P_i|$: Se a carta $i$ está correta, as outras 3 podem ser
+                  permutadas de $3!$ maneiras. Existem $\binom{4}{1}$ escolhas
+                  para $i$. Soma = $\binom{4}{1}3! = 24$.
+                </li>
+                <li>
+                  $|P_i \cap P_j|$: Se as cartas $i,j$ estão corretas, as outras
+                  2 podem ser permutadas de $2!$ maneiras. Existem
+                  $\binom{4}{2}$ escolhas para o par. Soma = $\binom{4}{2}2! =
+                  12$.
+                </li>
+                <li>$|P_i \cap P_j \cap P_k|$: Soma = $\binom{4}{3}1! = 4$.</li>
+                <li>
+                  $|P_1 \cap P_2 \cap P_3 \cap P_4|$: Soma = $\binom{4}{4}0! =
+                  1$.
+                </li>
+              </ul>
+              <p>
+                4. <strong>Cálculo Final:</strong> $D_4 = 4! - (24 - 12 + 4 - 1)
+                = 24 - 15 = 9$.
+              </p>
+              <p><strong>Resposta:</strong> Existem 9 maneiras.</p>
+            </div>
+          </div>
+
+          <hr class="my-8 border-gray-300" />
+
+          <h3 class="text-xl font-semibold mt-4 mb-2">
+            3. Partições de Inteiros
+          </h3>
+          <p class="mb-3">
+            Uma **partição** de um inteiro $n$ é uma forma de escrever $n$ como
+            soma de inteiros positivos, onde a ordem não importa. A função
+            geradora para $p(n)$, o número de partições de $n$, é: $$G(x) =
+            \prod_{k=1}^{\infty} \frac{1}{1-x^k} =
+            \frac{1}{(1-x)(1-x^2)(1-x^3)\cdots}$$ Esta é uma das fórmulas mais
+            belas da combinatória, conectando a teoria dos números à álgebra de
+            séries infinitas.
+          </p>
+        </section>
         <section
           id="exam_strategies"
           class="content-section bg-white p-6 rounded-lg shadow-md"
