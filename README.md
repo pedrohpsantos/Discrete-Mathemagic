@@ -70,7 +70,7 @@
 Discrete-Mathemagıc/
 ├── index.html
 ├── css/
-│   └── estilos.css        # (opcional, caso extra)
+│   └── estilos.css        # padrão de estilo
 ├── js/
 │   ├── main.js            # lógica de sidebar e collapsibles
 │   └── charts.js          # configuração dos gráficos Chart.js
